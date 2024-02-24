@@ -1,27 +1,44 @@
+'use client';
+import { useEffect, useState } from "react"
 import Link from "next/link"
-// import { useRouter } from "next/router"
+import axios from "axios";
 
 export default function Menu() {
-    // const router = useRouter()
+    const [services, setServices] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/api/get/allservicesname");
+                console.log("response--",response)
+                setServices(response.data);
+            } catch (error) {
+                console.error("Error fetching services:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const handleServiceClick = (serviceId) => {
+        window.location.href = `/service-details?id=${serviceId}`;
+    };
 
     return (
         <>
-
-            {/* <ul className="sub-menu">
-                <Link className={router.pathname == "/" ? "active" : ""}>Home Default</Link>
-                <Link className={router.pathname == "/index-2" ? "active" : ""}>Home Interior</Link>
-            </ul> */}
-
             <ul className="navigation clearfix">
                 <li className=""><Link href="/">Home</Link>
                 </li>
                 <li><Link href="/about-us">About Us</Link></li>
-                <li className="dropdown"><Link href="#">Services</Link>
+                <li className="dropdown"><Link href="#">I am looking for</Link>
                     <ul>
-                        <li><Link href="/tax-management">Tax Management</Link></li>
-                        <li><Link href="/strategy-planning">Strategy & Planning</Link></li>
-                        <li><Link href="/program-manager">Program Manager</Link></li>
-                        <li><Link href="/investment-policy">Investment Policy</Link></li>
+                    {services.map((service) => (
+                        <li key={service._id}>
+                            <a onClick={() => handleServiceClick(service._id)}>
+                                {service.name}
+                            </a>
+                        </li>
+                    ))}
                     </ul>
                 </li>
                 <li className="dropdown"><Link href="#">Careers</Link>

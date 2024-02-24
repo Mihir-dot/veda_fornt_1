@@ -59,14 +59,14 @@
 }
 
 .chooseus-section .outer-box .theme-btn-one{
-	background: #241E2F;
+	background: #4fc794;
 	box-shadow: #fff;
 	box-shadow: none;
 }
-
+/* 
 .chooseus-section .outer-box .theme-btn-one:before{
-	background: #fff;
-}
+	background: #6F42C1;
+} */
 
 .chooseus-section .outer-box .theme-btn-one:hover{
 	color: #241E2F !important;

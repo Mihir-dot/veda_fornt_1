@@ -1,8 +1,5 @@
 
-import ServiceTabs1 from "@/components/elements/ServiceTabs1"
 import Layout from "@/components/layout/Layout"
-import AuditSlider1 from "@/components/slider/AuditSlider1"
-import ServiceSlider1 from "@/components/slider/ServiceSlider1"
 import Link from "next/link"
 export default function Home() {
 

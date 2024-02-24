@@ -389,7 +389,7 @@ img {
 }
 
 .theme-btn-one:hover{
-  background: #241E2F;
+  background: #4fc794;
 }
 
 .theme-btn-one:before{
@@ -401,7 +401,7 @@ img {
   top: 0px;
   z-index: -1;
   transform: scale(0,0);
-  background: #241E2F;
+  background: #4fc794;
   transition: all 500ms ease;
 }
 
@@ -858,6 +858,7 @@ img {
 
 }
 
+
 /** header-lower **/
 
 .main-header .outer-box{
@@ -906,7 +907,7 @@ img {
   display: inline-block;
   font-size: 16px;
   line-height: 24px;
-  color: #222222;
+  color: #6F42C1;
   font-weight: 600;
   text-transform: capitalize;
   border: 1px solid #E5E5E5;
@@ -983,7 +984,7 @@ img {
   font-family: var(--jost);
   text-transform: uppercase;
   opacity:1;
-  color: #222;
+  color: #6F42C1;
   z-index:1;
   -webkit-transition:all 500ms ease;
   -moz-transition:all 500ms ease;
@@ -1020,7 +1021,7 @@ img {
   margin-top: 15px;
   padding: 10px 0px;
   z-index:100;
-  background: #241E2F;
+  background: #4fc794;
   display:none;
   opacity: 0;
   visibility: hidden;
@@ -1054,13 +1055,15 @@ img {
 .main-menu .navigation > li > .megamenu li > a{
   position:relative;
   display:block;
-  padding: 10px 30px;
+  /* padding: 10px 30px; */
+  padding: 4px 11px;
+
   line-height:24px;
   font-weight:500;
   font-size:16px;
   text-transform:capitalize;
   font-family: var(--inter);
-  color:#fff;
+  color:#000;
   text-align: left;
   transition:all 500ms ease;
   -moz-transition:all 500ms ease;
@@ -1753,7 +1756,7 @@ div#mCSB_1_container{
 }
 
 .bg-color-2{
-  background: #241E2F;
+  background: #4fc794;
 }
 
 .nav-style-one .owl-nav button{
@@ -1817,7 +1820,7 @@ div#mCSB_1_container{
 
 .main-footer{
   position: relative;
-  background: #1D1826;
+  background: #6F42C1;
 }
 
 .main-footer .widget-section{
@@ -1951,7 +1954,7 @@ div#mCSB_1_container{
 .footer-bottom{
   position: relative;
   display: block;
-  background: #191521;
+  background: #6F42C1;
   padding: 31px 0px;
 }
 
@@ -3069,6 +3072,15 @@ div#mCSB_1_container{
     padding-right: 30px;
   }
 
+  .service-sidebar .category-widget{
+    position: relative;
+    display: block;
+    background: #000;
+    box-shadow: 0px 20px 80px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 30px 40px 40px 40px;
+    margin-bottom: 40px;
+  }
   .image_block_two .image-box .image-content{
     position: relative;
     left: 0px;
@@ -3208,6 +3220,27 @@ div#mCSB_1_container{
     padding-right: 30px;
   }
 
-
+  .loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjust as needed */
+    background-color: rgba(116, 116, 116, 0.2); /* Transparent gray background */
+    }
+    
+    .loader {
+    border: 8px solid #4fc794; /* White spinner */
+    border-top: 8px solid #6F42C1;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+    }
+    
 
 }

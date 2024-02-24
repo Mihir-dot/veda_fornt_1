@@ -1,8 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/not-found": "app/not-found.js",
-  "/investment-policy/page": "app/investment-policy/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/program-manager/page": "app/program-manager/page.js",
-  "/tax-management/page": "app/tax-management/page.js"
-}
