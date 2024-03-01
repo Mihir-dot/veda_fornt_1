@@ -74,7 +74,7 @@ export default function Home() {
               <div className="col-lg-4 col-md-12 col-sm-12 sidebar-side">
                 <div className="service-sidebar mr_40">
                   <div className="sidebar-widget category-widget">
-                    <h3 className="all-services">I am looking for</h3>
+                    <h3 className="all-services">I'm looking for</h3>
                     <ul className="category-list clearfix">
                     {services.map((service) => (
                         <li key={service._id}>

@@ -45,6 +45,7 @@
 @import url('elements-css/clients.css');
 @import url('elements-css/shop.css');
 @import url('elements-css/shop-details.css');
+@import url('https://fonts.cdnfonts.com/css/museo-sans-rounded');
 /*** 
 
 ====================================================================
@@ -75,7 +76,8 @@ body {
   line-height:28px;
   font-weight:400;
   background:#ffffff;
-  font-family: var(--inter);
+  /* font-family: var(--inter); */
+  font-family: 'Museo Sans Rounded', sans-serif;
   background-size:cover;
   background-repeat:no-repeat;
   background-position:center top;
@@ -977,12 +979,11 @@ img {
   position:relative;
   display:block;
   text-align:center;
-  font-size:14px;
+  font-size:16px;
   line-height:30px;
   padding: 40px 0px;
-  font-weight:500;
-  font-family: var(--jost);
-  text-transform: uppercase;
+  font-weight:600;
+  /* text-transform: uppercase; */
   opacity:1;
   color: #6F42C1;
   z-index:1;
@@ -1056,14 +1057,15 @@ img {
   position:relative;
   display:block;
   /* padding: 10px 30px; */
-  padding: 4px 11px;
+  padding: 8px 11px;
 
   line-height:24px;
-  font-weight:500;
-  font-size:16px;
+  font-weight:600;
+  font-size:15px;
   text-transform:capitalize;
-  font-family: var(--inter);
+  /* font-family: var(--inter); */
   color:#000;
+  cursor: pointer;
   text-align: left;
   transition:all 500ms ease;
   -moz-transition:all 500ms ease;
@@ -3225,12 +3227,13 @@ div#mCSB_1_container{
     align-items: center;
     justify-content: center;
     height: 100vh; /* Adjust as needed */
-    background-color: rgba(116, 116, 116, 0.2); /* Transparent gray background */
+  /* background-color: rgba(116, 116, 116, 0.2); Transparent gray background */
+  background-color: #4fc794;
     }
     
     .loader {
-    border: 8px solid #4fc794; /* White spinner */
-    border-top: 8px solid #6F42C1;
+    border: 8px solid #6F42C1; /* White spinner */
+    border-top: 8px solid #FFFFFF;
     border-radius: 50%;
     width: 50px;
     height: 50px;

@@ -3,12 +3,13 @@
 	align-items: center;
 	justify-content: center;
 	height: 100vh; /* Adjust as needed */
-	background-color: rgba(116, 116, 116, 0.2); /* Transparent gray background */
+/* background-color: rgba(116, 116, 116, 0.2); Transparent gray background */
+background-color: #4fc794;
   }
   
   .loader {
-	border: 8px solid #4fc794; /* White spinner */
-	border-top: 8px solid #6F42C1;
+	border: 8px solid #6F42C1; /* White spinner */
+	border-top: 8px solid #FFFFFF;
 	border-radius: 50%;
 	width: 50px;
 	height: 50px;
@@ -63,14 +64,17 @@ h3.all-services{
 .service-sidebar .category-widget .category-list li a{
 	position: relative;
 	display: block;
-	font-size: 16px;
+	font-size: 15px;
 	line-height: 26px;
 	color: #fff;
 	font-weight: 600;
-	border: 1px solid #E5E5E5;
-	border-radius: 5px;
-	padding: 16px 30px;
+	border-bottom: 1px solid #E5E5E5;
+	/* border-radius: 5px; */
+	/* padding: 16px 30px; */
+	padding: 4px 25px;
+	padding: 4px 0px;
 	z-index: 1;
+	cursor: pointer;
 }
 
 .service-sidebar .category-widget .category-list li a:hover,
@@ -94,7 +98,7 @@ h3.all-services{
 	width: 100%;
 }
 
-.service-sidebar .category-widget .category-list li a:after{
+/* .service-sidebar .category-widget .category-list li a:after{
 	position: absolute;
 	content: '\e91b';
 	font-family: 'icomoon';
@@ -103,7 +107,7 @@ h3.all-services{
 	top: 16px;
 	right: 20px;
 	font-weight: 400;
-}
+} */
 
 .service-sidebar .contact-widget .widget-content{
 	position: relative;
