@@ -1,25 +1,23 @@
 'use client';
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import axios from "axios";
+import { fetchServiceName } from "../helper/serviceNameCommonAPI";
 
 export default function Menu() {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://localhost:5000/api/get/allservicesname");
-                console.log("response--",response)
-                setServices(response.data);
-            } catch (error) {
-                console.error("Error fetching services:", error);
-            }
+        const fetchDataFromAPI = async () => {
+          try {
+            const data = await fetchServiceName();
+            setServices(data);
+          } catch (error) {
+            console.error("Error fetching services:", error);
+          }
         };
-
-        fetchData();
-    }, []);
-
+    
+        fetchDataFromAPI();
+      }, []);
     const handleServiceClick = (serviceId) => {
         window.location.href = `/service-details?id=${serviceId}`;
     };

@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import axios from "axios";
- 
+import { fetchServiceName } from "@/components/helper/serviceNameCommonAPI";
+import { API_ENDPOINTS, getAPIEndpoint } from "@/components/helper/apiPath";
 
 export default function Home() {
   const [serviceDetails, setServiceDetails] = useState(null);
@@ -17,14 +18,22 @@ export default function Home() {
     if (serviceId) {
       fetchServiceDetails();
     }
+    const fetchDataFromAPI = async () => {
+      try {
+        const data = await fetchServiceName();
+        setServices(data);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      }
+    };
 
-    fetchData();
+    fetchDataFromAPI();
   }, []);
 
   const fetchServiceDetails = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://localhost:5000/api/get/services/${serviceId}`);
+      const response = await axios.get(`${getAPIEndpoint(API_ENDPOINTS.GET_SERVICE_BY_ID)}/${serviceId}`);
       setServiceDetails(response.data);
     } catch (error) {
       console.error("Error fetching service details:", error);
@@ -32,15 +41,7 @@ export default function Home() {
       setIsLoading(false);
     }
   };
-  const fetchData = async () => {
-    try {
-        const response = await axios.get("http://localhost:5000/api/get/allservicesname");
-        console.log("response--",response)
-        setServices(response.data);
-    } catch (error) {
-        console.error("Error fetching services:", error);
-    }
-};
+
   const handleServiceClick = (serviceId) => {
       window.location.href = `/service-details?id=${serviceId}`;
   };
