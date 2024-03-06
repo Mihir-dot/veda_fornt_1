@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import axios from "axios";
+ 
 
 export default function Home() {
   const [serviceDetails, setServiceDetails] = useState(null);
@@ -79,7 +80,7 @@ export default function Home() {
                     {services.map((service) => (
                         <li key={service._id}>
                             <a onClick={() => handleServiceClick(service._id)}>
-                                {service.name}
+                                {service.sortName}
                             </a>
                         </li>
                     ))}

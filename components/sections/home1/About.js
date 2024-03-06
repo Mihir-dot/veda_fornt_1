@@ -40,7 +40,6 @@ export default function About() {
                                 <p>Lorem ipsum dolor sit amet tempus consectetur adipiscing.</p>
                             </div>
                             </div>
-                            <figure className="signature"><img src="assets/images/icons/signature-1.png" alt="" /></figure>
                         </div>
                         </div>
                     </div>

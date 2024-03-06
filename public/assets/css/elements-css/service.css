@@ -21,10 +21,11 @@
 
 .service-block-one .inner-box h3{
 	display: block;
-	font-size: 24px;
+	font-size: 17px;
 	line-height: 32px;
 	font-weight: 600;
 	margin-bottom: 12px;
+	cursor: pointer;
 }
 
 .service-block-one .inner-box .static-content h3 a{
@@ -81,7 +82,7 @@
 }
 
 .service-block-one .inner-box .theme-btn-one:before{
-	background: #fff;
+	background: #4fc794;
 }
 
 .service-block-one .inner-box .theme-btn-one:hover{

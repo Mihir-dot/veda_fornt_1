@@ -40,7 +40,7 @@ export default function Menu() {
                     {services.map((service) => (
                         <li key={service._id}>
                             <a onClick={() => handleServiceClick(service._id)}>
-                                {service.name}
+                                {service.sortName}
                             </a>
                         </li>
                     ))}

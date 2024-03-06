@@ -1,6 +1,7 @@
 "use client";
+import axios from "axios";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function MobileMenu({
   isSidebar,
   handleMobileMenu,
@@ -11,6 +12,26 @@ export default function MobileMenu({
     key: "",
   });
 
+  const [services, setServices] = useState([]);
+  console.log("service---",services)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/api/get/allservicesname");
+                console.log("response--",response)
+                setServices(response.data);
+            } catch (error) {
+                console.error("Error fetching services:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const handleServiceClick = (serviceId) => {
+        window.location.href = `/service-details?id=${serviceId}`;
+    };
   const handleToggle = (key) => {
     if (isActive.key === key) {
       setIsActive({
@@ -23,6 +44,7 @@ export default function MobileMenu({
       });
     }
   };
+
   return (
     <>
       <div className="mobile-menu">
@@ -33,7 +55,7 @@ export default function MobileMenu({
         <nav className="menu-box">
           <div className="nav-logo">
             <Link href="/">
-              <img src="/assets/images/logo-2.png" alt="" />
+              <img src="/assets/images/logo.png" alt="" className="header-logo"/>
             </Link>
           </div>
           <div className="menu-outer">
@@ -44,57 +66,48 @@ export default function MobileMenu({
               <ul className="navigation clearfix">
               
                   <li><Link href="/">Home</Link></li>
-                  
-                     <li> <Link href="/about-us">About Us</Link></li>
-                   
-
-                <li
-                  className={
-                    isActive.key == 1 ? "dropdown current" : "dropdown"
-                  }
-                >
-                  <Link href="/#">Services</Link>
-                  <ul
-                    style={{
-                      display: `${isActive.key == 1 ? "block" : "none"}`,
-                    }}
-                  >
-                    <li>
-                      <Link href="/tax-management">Tax Management</Link>
-                    </li>
-                    <li>
-                      <Link href="/strategy-planning">Strategy & Planning</Link>
-                    </li>
-                    <li>
-                      <Link href="/program-manager">Program Manager</Link>
-                    </li>
-                    <li>
-                      <Link href="/investment-policy">Investment Policy</Link>
-                    </li>
-                  </ul>
-                  <div
-                    className={
-                      isActive.key == 1 ? "dropdown-btn open" : "dropdown-btn"
-                    }
-                    onClick={() => handleToggle(1)}
-                  >
-                    <span className="fa fa-angle-right" />
-                  </div>
-                </li>
+                     <li
+                     className={
+                       isActive.key == 1 ? "dropdown current" : "dropdown"
+                     }
+                   >
+                     <Link href="/#">About Us</Link>
+                     <ul
+                       style={{
+                         display: `${isActive.key == 1 ? "block" : "none"}`,
+                       }}
+                     >
+                     <li><Link href="/about-us">What we do?</Link></li>
+                     <li><Link href="/shop">Our Vision, Pupose, and Values</Link></li>
+                       
+                     </ul>
+                     <div
+                       className={
+                         isActive.key == 1 ? "dropdown-btn open" : "dropdown-btn"
+                       }
+                       onClick={() => handleToggle(1)}
+                     >
+                       <span className="fa fa-angle-right" />
+                     </div>
+                   </li>
                 <li
                   className={
                     isActive.key == 2 ? "dropdown current" : "dropdown"
                   }
                 >
-                  <Link href="/#">Careers</Link>
+                  <Link href="/#">I'm looking for</Link>
                   <ul
                     style={{
                       display: `${isActive.key == 2 ? "block" : "none"}`,
                     }}
                   >
-                     <li><Link href="/portfolio">Work at vida</Link></li>
-                        <li><Link href="/career">Current Vacancies</Link></li>
-                    
+                  {services.map((service) => (
+                    <li key={service._id}>
+                        <a onClick={() => handleServiceClick(service._id)}>
+                            {service.sortName}
+                        </a>
+                    </li>
+                ))}
                   </ul>
                   <div
                     className={
@@ -110,15 +123,47 @@ export default function MobileMenu({
                     isActive.key == 3 ? "dropdown current" : "dropdown"
                   }
                 >
-                  <Link href="/#">Advocacy</Link>
+                  <Link href="/#">Work with us</Link>
                   <ul
                     style={{
                       display: `${isActive.key == 3 ? "block" : "none"}`,
                     }}
                   >
-                   <li><Link href="/shop">Podcast</Link></li>
-                   <li><Link href="/product-details">VIDA CEO/Founder Blog</Link></li>
+                  <li><Link href="/career">Current Vacancies</Link></li>
+                    
                   </ul>
+                  <div
+                    className={
+                      isActive.key == 3 ? "dropdown-btn open" : "dropdown-btn"
+                    }
+                    onClick={() => handleToggle(3)}
+                  >
+                    <span className="fa fa-angle-right" />
+                  </div>
+                </li>
+                <li
+                  className={
+                    isActive.key == 4 ? "dropdown current" : "dropdown"
+                  }
+                >
+                  <Link href="/#">Advocacy</Link>
+                  <ul
+                    style={{
+                      display: `${isActive.key == 4 ? "block" : "none"}`,
+                    }}
+                  >
+                  <li><Link href="/shop">Podcast</Link></li>
+                  <li><Link href="/shop">Resources</Link></li>
+                  <li><Link href="/product-details">VIDA CEO/Founder Blog</Link></li>
+                  </ul>
+                  <div
+                  className={
+                    isActive.key == 4 ? "dropdown-btn open" : "dropdown-btn"
+                  }
+                  onClick={() => handleToggle(4)}
+                >
+                  <span className="fa fa-angle-right" />
+                </div>
                 </li>
                 <li>
                   <Link href="/contact">Contact</Link>

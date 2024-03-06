@@ -2,7 +2,7 @@
 export default function Feature() {
     return (
         <>
-            <section className="expertise-section p_relative bg-color-1">
+        {  /*  <section className="expertise-section p_relative bg-color-1">
                 <div className="pattern-layer">
                     <div className="pattern-1" style={{ backgroundImage: "url(assets/images/shape/shape-2.png)" }}></div>
                     <div className="pattern-2" style={{ backgroundImage: "url(assets/images/shape/shape-3.png)" }}></div>
@@ -13,7 +13,6 @@ export default function Feature() {
                         <div className="content_block_three">
                         <div className="content-box p_relative mr_30">
                             <div className="sec-title mb_30">
-                            <span className="sub-title">Our Expertise</span>
                             <h2>Our Business Growth is Really Incredible!</h2>
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Donec felis suscipit mi urna nulla at tincidunt feugiat vulputate. Ante facilisis face pellentesque quis egestas metus.</p>
                             </div>
@@ -77,7 +76,7 @@ export default function Feature() {
                     </div>
                     </div>
                 </div>
-            </section>
+    </section>*/}
         </>
     )
 }

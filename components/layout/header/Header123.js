@@ -53,7 +53,7 @@ export default function Header3({ scroll, isMobileMenu, handleMobileMenu, isSide
                     <div className="auto-container">
                         <div className="outer-box">
                             <div className="logo-box">
-                                <figure className="logo"><Link href="/"><img src="/assets/images/logo.png" alt="" /></Link></figure>
+                                <figure className="logo"><Link href="/"><img src="/assets/images/logo.png" alt=""  className="header-logo"/></Link></figure>
                             </div>
                             <div className="menu-area clearfix">
                                 <nav className="main-menu navbar-expand-md navbar-light">

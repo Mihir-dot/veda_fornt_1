@@ -28,6 +28,7 @@
 .main-menu .navigation > li > ul > li > a:hover,
 .main-menu .navigation > li > .megamenu li > a:hover{
   color: #6f42c1;
+  text-decoration: underline;
 }
 
 .main-menu .navigation > li > ul > li > ul > li > a:hover{
@@ -174,15 +175,19 @@
 }
 
 .main-footer .links-widget .links-list li a:hover{
-  color: #6f42c1;
+  color: #fff;
+  text-decoration:underline;
+
 }
 
 .main-footer .contact-widget .info-list li i{
-	color: #6f42c1;
+	color: #fff;
 }
 
 .main-footer .contact-widget .info-list li a:hover{
-  color: #6f42c1;
+  color: #fff;
+  text-decoration:underline;
+
 }
 
 .footer-bottom a:hover{

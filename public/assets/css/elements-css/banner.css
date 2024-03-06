@@ -16,14 +16,17 @@
   max-width: 630px;
   width: 100%;
   z-index: 5;
+ 
 }
   
 .banner-carousel .content-box .content-inner{
   position: relative;
   background: rgba(255, 255, 255, 0.2);
   border: 2px solid rgba(255, 255, 255, 0.15);
+    /* background: rgba(79, 199, 148, 0.7);
+  border: 2px solid rgba(79, 199, 148, 0.7); */
   backdrop-filter: blur(7.5px);
-  border-radius: 10px;
+  border-radius: 10px; 
   opacity: 0;
   padding: 45px 50px 50px 50px;
   -webkit-transform: translateY(100px);

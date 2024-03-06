@@ -14,7 +14,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                         <div className="outer-box">
                         <div className="logo-box">
                             <figure className="logo">
-                            <Link href="/"><img src="/assets/images/logo.png" alt="" /></Link>
+                            <Link href="/"><img src="/assets/images/logo.png" alt="" className="header-logo"/></Link>
                             </figure>
                         </div>
                         <div className="menu-area clearfix">
@@ -46,7 +46,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                             <div className="logo-box">
                             <figure className="logo">
                                 <Link href="/">
-                                <img src="/assets/images/logo.png" alt="/" />
+                                <img src="/assets/images/logo.png" alt="/" className="header-logo"/>
                                 </Link>
                             </figure>
                             </div>
