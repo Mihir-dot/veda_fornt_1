@@ -1,5 +1,10 @@
 "use client";
-import { API_ENDPOINTS, IMAGE_BASE_URL, getAPIEndpoint, getImageSource } from "@/components/helper/apiPath";
+import {
+  API_ENDPOINTS,
+  IMAGE_BASE_URL,
+  getAPIEndpoint,
+  getImageSource,
+} from "@/components/helper/apiPath";
 import Layout from "@/components/layout/Layout";
 import axios from "axios";
 import Link from "next/link";
@@ -7,6 +12,7 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [contactData, setContactData] = useState([]);
+  const [socialMedia, setSocialMedia] = useState([]);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -18,22 +24,37 @@ export default function Home() {
   }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
 
   useEffect(() => {
-    const fetchAllContacts = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get(
-          getAPIEndpoint(API_ENDPOINTS.GET_CONTACTS_DETAILS)
-        );
-        setContactData(response.data); // Update state with fetched contact data
-      } catch (error) {
-        console.error("Error fetching contacts:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchAllContacts(); // Call the fetchAllContacts function
+    fetchAllContacts();
+    fetchAllSocialDetails();
   }, []);
+
+  const fetchAllContacts = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get(
+        getAPIEndpoint(API_ENDPOINTS.GET_CONTACTS_DETAILS)
+      );
+      setContactData(response.data); // Update state with fetched contact data
+    } catch (error) {
+      console.error("Error fetching contacts:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const fetchAllSocialDetails = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get(
+        getAPIEndpoint(API_ENDPOINTS.GET_ALL_SECIAL_DATA)
+      );
+      setSocialMedia(response.data); // Update state with fetched contact data
+    } catch (error) {
+      console.error("Error fetching contacts:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <Layout headerStyle={2} footerStyle={1}>
@@ -44,15 +65,14 @@ export default function Home() {
         ) : (
           <>
             {contactData.map((contact) => (
-              
-              <> 
+              <>
                 <section className="page-title centred">
                   <div
                     className="bg-layer"
                     style={{
                       backgroundImage: `url(${getImageSource(contact.path)})`,
                     }}
-                  ></div> 
+                  ></div>
                   <div className="auto-container">
                     <div className="content-box">
                       <h1>Get in touch</h1>
@@ -100,10 +120,7 @@ export default function Home() {
                                 <i className="icon-48"></i>
                               </div>
                               <h3>Our Location</h3>
-                              <p>
-                               {contact.location}
-                               
-                              </p>
+                              <p>{contact.location}</p>
                             </div>
                           </div>
                         </div>
@@ -121,7 +138,7 @@ export default function Home() {
                               <h3>Email Address</h3>
                               <p>
                                 <Link href="mailto:contact@example.com">
-                                 {contact.email}
+                                  {contact.email}
                                 </Link>
                               </p>
                             </div>
@@ -174,28 +191,38 @@ export default function Home() {
                                 interdum nisl magna.
                               </p>
                             </div>
-                            <ul className="social-links clearfix">
-                              <li>
-                                <Link href="/contact">
-                                  <i className="fab fa-facebook-f"></i>
-                                </Link>
-                              </li>
-                              <li>
-                                <Link href="/contact">
-                                  <i className="fab fa-twitter"></i>
-                                </Link>
-                              </li>
-                              <li>
-                                <Link href="/contact">
-                                  <i className="fab fa-pinterest-p"></i>
-                                </Link>
-                              </li>
-                              <li>
-                                <Link href="/contact">
-                                  <i className="fab fa-instagram"></i>
-                                </Link>
-                              </li>
-                            </ul>
+                            {socialMedia.map((social) => (
+                              <ul className="social-links clearfix">
+                                <li>
+                                  <Link href={social.facebook}>
+                                    <i className="fab fa-facebook-f"></i>
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link href={social.twitter}>
+                                    <i className="fab fa-twitter"></i>
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link href={social.linkedin} style={{background:"#0072b1"}}>
+                                    <i className="fab fa-linkedin-in"></i>
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link href={social.instagram} style={{background:"linear-gradient(115deg, rgb(249, 206, 52), rgb(238, 42, 123), rgb(98, 40, 215)) "}}>
+                                    <i className="fab fa-instagram"></i>
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link
+                                    href={social.youtube}
+                                    style={{ background: "red" }}
+                                  >
+                                    <i className="fab fa-youtube"></i>
+                                  </Link>
+                                </li>
+                              </ul>
+                            ))}
                           </div>
                         </div>
                         <div className="col-lg-8 col-md-12 col-sm-12 form-column">

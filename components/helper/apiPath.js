@@ -6,7 +6,8 @@ export const API_ENDPOINTS = {
   ALL_SERVICES: "/get/allservicesname",
   GET_SERVICE_BY_ID:"/get/services",
   GET_CONTACTS_DETAILS:"/get-all-contacts",
-  GET_ALL_REVIEWS: "/get/allratting"
+  GET_ALL_REVIEWS: "/get/allratting",
+  GET_ALL_SECIAL_DATA: "/get/all/social/media"
 };
 
 export const getAPIEndpoint = (endpoint) => {
