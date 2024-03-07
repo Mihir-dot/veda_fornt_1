@@ -3,26 +3,22 @@ import Layout from "@/components/layout/Layout";
 import TestimonialSlider5 from "@/components/slider/TestimonialSlider5";
 import TestimonialSlider1 from "@/components/slider/TestimonialSlider1";
 import Link from "next/link";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { fetchServiceName } from "@/components/helper/serviceNameCommonAPI";
 export default function Home() {
   const [services, setServices] = useState([]);
-  console.log("services---", services);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataFromAPI = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/get/allservicesname"
-        );
-        console.log("response--", response);
-        setServices(response.data);
+        const data = await fetchServiceName();
+        setServices(data);
       } catch (error) {
         console.error("Error fetching services:", error);
       }
     };
 
-    fetchData();
+    fetchDataFromAPI();
   }, []);
 
   const handleServiceClick = (serviceId) => {

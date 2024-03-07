@@ -1,6 +1,10 @@
 'use client'
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
+import { getAllReviewsData } from "../helper/serviceNameCommonAPI";
+import { getImageSource } from "../helper/apiPath";
 
 const swiperOptions = {
     modules: [Autoplay, Pagination, Navigation],
@@ -52,126 +56,56 @@ const swiperOptions = {
     }
 }
 export default function TestimonialSlider1() {
+    const [reviews, setReviews] = useState([]);
+
+    useEffect(() => {
+      const fetchReviews = async () => {
+        try {
+          const data = await getAllReviewsData();
+          setReviews(data);
+        } catch (error) {
+          console.error("Error fetching services:", error);
+        }
+      };
+  
+      fetchReviews();
+    }, []);
     return (
         <>
-            <Swiper {...swiperOptions} className="theme_carousel owl-theme">
-                <SwiperSlide className="slide">
-                    <div className="testimonial-block-one">
-                        <div className="inner-box">
-                            <div
-                            className="shape"
-                            style={{ backgroundImage: 'url(assets/images/shape/shape-14.png)' }}
-                            ></div>
-                            <div className="icon-box"><i className="icon-19"></i></div>
-                            <figure className="thumb-box">
-                            <img src="assets/images/resource/testimonial-1.jpg" alt="" />
-                            </figure>
-                            <p>
-                            “Mattis cras magna morb nula punar aenean aliquet in. Risus
-                            a arcu eget mi hendrerit gravida elit scelerisque tempor
-                            Pharetra fringilla tellus vivera eget sapien viverra
-                            faucibus facilisis sed facilisi dictum.”
-                            </p>
-                            <ul className="rating clearfix">
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="far fa-star"></i></li>
-                            </ul>
-                            <h3>Brooklyn Simmons</h3>
-                            <span className="designation">Manager</span>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide className="slide">
-                    <div className="testimonial-block-one">
-                        <div className="inner-box">
-                            <div
-                            className="shape"
-                            style={{ backgroundImage: 'url(assets/images/shape/shape-15.png)' }}
-                            ></div>
-                            <div className="icon-box"><i className="icon-19"></i></div>
-                            <figure className="thumb-box">
-                            <img src="assets/images/resource/testimonial-6.jpg" alt="" />
-                            </figure>
-                            <p>
-                            “Mattis cras magna morb nula punar aenean aliquet in. Risus
-                            a arcu eget mi hendrerit gravida elit scelerisque tempor
-                            Pharetra fringilla tellus vivera eget sapien viverra
-                            faucibus facilisis sed facilisi dictum.”
-                            </p>
-                            <ul className="rating clearfix">
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="far fa-star"></i></li>
-                            </ul>
-                            <h3>Annette Black</h3>
-                            <span className="designation">Manager</span>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide className="slide">
-                    <div className="testimonial-block-one">
-                        <div className="inner-box">
-                            <div
-                            className="shape"
-                            style={{ backgroundImage: 'url(assets/images/shape/shape-14.png)' }}
-                            ></div>
-                            <div className="icon-box"><i className="icon-19"></i></div>
-                            <figure className="thumb-box">
-                            <img src="assets/images/resource/testimonial-1.jpg" alt="" />
-                            </figure>
-                            <p>
-                            “Mattis cras magna morb nula punar aenean aliquet in. Risus
-                            a arcu eget mi hendrerit gravida elit scelerisque tempor
-                            Pharetra fringilla tellus vivera eget sapien viverra
-                            faucibus facilisis sed facilisi dictum.”
-                            </p>
-                            <ul className="rating clearfix">
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="far fa-star"></i></li>
-                            </ul>
-                            <h3>Brooklyn Simmons</h3>
-                            <span className="designation">Manager</span>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide className="slide">
-                    <div className="testimonial-block-one">
-                        <div className="inner-box">
-                            <div
-                            className="shape"
-                            style={{ backgroundImage: 'url(assets/images/shape/shape-15.png)' }}
-                            ></div>
-                            <div className="icon-box"><i className="icon-19"></i></div>
-                            <figure className="thumb-box">
-                            <img src="assets/images/resource/testimonial-6.jpg" alt="" />
-                            </figure>
-                            <p>
-                            “Mattis cras magna morb nula punar aenean aliquet in. Risus
-                            a arcu eget mi hendrerit gravida elit scelerisque tempor
-                            Pharetra fringilla tellus vivera eget sapien viverra
-                            faucibus facilisis sed facilisi dictum.”
-                            </p>
-                            <ul className="rating clearfix">
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="fas fa-star"></i></li>
-                            <li><i className="far fa-star"></i></li>
-                            </ul>
-                            <h3>Annette Black</h3>
-                            <span className="designation">Manager</span>
-                        </div>
-                    </div>
-                </SwiperSlide>                
-            </Swiper>
+        <Swiper {...swiperOptions} className="theme_carousel owl-theme">
+        {reviews.map((review, index) => (
+            
+          <SwiperSlide key={index} className="slide">
+            <div className={`testimonial-block-one ${index % 2 === 0 ? 'shape-14' : 'shape-15'}`}>
+              <div className="inner-box">
+                <div
+                  className="shape"
+                  style={{ backgroundImage: `url(assets/images/shape/${index % 2 === 0 ? 'shape-14' : 'shape-15'}.png)` }}
+                ></div>
+                <div className="icon-box"><i className="icon-19"></i></div>
+                <figure className="thumb-box">
+                {review.pictureLocation ? (
+                  <img src={getImageSource(review.pictureLocation)} alt="" />
+                ) : (
+                  <img src="assets/images/resource/testimonial-3.jpg" alt="" />
+                )}
+                </figure>
+                <p>{review.text}</p>
+                <ul className="rating clearfix">
+                  {Array.from({ length: review.rating }, (_, i) => (
+                    <li key={i}><i className="fas fa-star"></i></li>
+                  ))}
+                  {Array.from({ length: 5 - review.rating }, (_, i) => (
+                    <li key={i}><i className="far fa-star"></i></li>
+                  ))}
+                </ul>
+                <h3>{review.name}</h3>
+                <span className="designation">{review.post}</span>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
         </>
     )
 }

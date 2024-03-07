@@ -1,5 +1,5 @@
 "use client";
-import { API_ENDPOINTS, IMAGE_BASE_URL, getAPIEndpoint } from "@/components/helper/apiPath";
+import { API_ENDPOINTS, IMAGE_BASE_URL, getAPIEndpoint, getImageSource } from "@/components/helper/apiPath";
 import Layout from "@/components/layout/Layout";
 import axios from "axios";
 import Link from "next/link";
@@ -50,10 +50,9 @@ export default function Home() {
                   <div
                     className="bg-layer"
                     style={{
-                      backgroundImage:
-                        `url(${IMAGE_BASE_URL}/${contact.path.replace(/\\/g, '/')})`,
+                      backgroundImage: `url(${getImageSource(contact.path)})`,
                     }}
-                  ></div>
+                  ></div> 
                   <div className="auto-container">
                     <div className="content-box">
                       <h1>Get in touch</h1>

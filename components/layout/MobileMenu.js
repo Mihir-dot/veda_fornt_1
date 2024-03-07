@@ -14,7 +14,6 @@ export default function MobileMenu({
   });
 
   const [services, setServices] = useState([]);
-  console.log("service---",services)
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {

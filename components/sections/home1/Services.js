@@ -1,28 +1,23 @@
 "use client";
-import axios from "axios";
-import Link from "next/link";
+import { fetchServiceName } from "@/components/helper/serviceNameCommonAPI";
 import { useEffect, useState } from "react";
 
 export default function Pricing() {
   const [activeIndex, setActiveIndex] = useState(1);
 
   const [services, setServices] = useState([]);
-  console.log("services---", services);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataFromAPI = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/get/allservicesname"
-        );
-        console.log("response--", response);
-        setServices(response.data);
+        const data = await fetchServiceName();
+        setServices(data);
       } catch (error) {
         console.error("Error fetching services:", error);
       }
     };
 
-    fetchData();
+    fetchDataFromAPI();
   }, []);
 
   const handleServiceClick = (serviceId) => {

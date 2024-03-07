@@ -4,7 +4,7 @@ import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import axios from "axios";
 import { fetchServiceName } from "@/components/helper/serviceNameCommonAPI";
-import { API_ENDPOINTS, getAPIEndpoint } from "@/components/helper/apiPath";
+import { API_ENDPOINTS, getAPIEndpoint, getImageSource } from "@/components/helper/apiPath";
 
 export default function Home() {
   const [serviceDetails, setServiceDetails] = useState(null);
@@ -57,7 +57,7 @@ export default function Home() {
       ) : (
         <>
       <section className="page-title centred">
-      <div className="bg-layer" style={{ backgroundImage: 'url(assets/images/background/page-title.jpg)' }}></div>
+      <div className="bg-layer" style={{ backgroundImage: `url(${getImageSource(serviceDetails.bannerLocation)})` }}></div>
       <div className="auto-container">
           <div className="content-box">
               <h1>{serviceDetails ? serviceDetails.name : "Service Details"}</h1>
@@ -95,37 +95,22 @@ export default function Home() {
                   <div className="content-one mb_90">
                   
                     <div className="text">
-                      <h2>Tax Management</h2>
+                      <h2>{serviceDetails.titleOne}</h2>
                       <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et
-                        enim justo, in mauris posuere dolor. Dolor felis sapien sit egestas.
-                        Ut venenatis faucibus non sed faucibus mauris ultricies. Cras varius
-                        proin amet vehicula magna. Ultricies gravida vel volutpat sed. Platea
-                        sed fames at egestas amet feugiat laoreet sed potenti integer. Viverra
-                        at maecenas convallis condimentum egestas nunc sagittis eu. Semper
-                        faucibus facilisis vitae sollicitudin.
-                      </p>
-                      <p>
-                        Fringilla mauris magna sit elementum elit. Facilisi lacus, pharetra
-                        quam eu urna amet aenean. Nunc mattis vitae tellus bibendum a eu,
-                        nunc. Consequat commodo ac cursus in donec orci tempus. Massa sed sit
-                        faucibus neque habitant consequat.
+                        {serviceDetails.containtOne}
                       </p>
                     </div>
                     <figure className="image-box">
-                    <img src="assets/images/service/service-8.jpg" alt="" />
+                    <img src={getImageSource(serviceDetails.imageLocation)} alt="" />
                   </figure>
                   </div>
                   <div className="content-two mb_90">
                     <div className="row clearfix">
                       <div className="col-lg-12 col-md-12 col-sm-12 text-column">
                         <div className="text-box">
-                          <h3>Overview</h3>
-                          <p>
-                            Dolor felis sapien sit egestas venenatis faucibus non sed
-                            faucibus mauris ultricies. Cras varius proin amet vehicula magna.
-                            Ultricies gravida vel volutpat sed platea sed fames at egestas
-                            amet feugiat laoreet sed potenti integer.
+                          <h3>{serviceDetails.titleTwo}</h3>
+                          <p>``````````
+                           {serviceDetails.containtTwo}
                           </p>
                           <ul className="list-style-one clearfix">
                             <li>Holiday Trash & Recycling</li>
