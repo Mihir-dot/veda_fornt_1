@@ -191,7 +191,6 @@ export default function Home() {
                                 interdum nisl magna.
                               </p>
                             </div>
-                            {console.log("hello")}
                             {socialMedia.map((social) => (
                               <ul className="social-links clearfix">
                                 <li>

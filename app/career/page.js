@@ -159,16 +159,20 @@ export default function Home() {
                                         <div className="form-inner">
                                             <form action="career.html" method="post">
                                                 <div className="form-group">
-                                                <input type="text" name="name" placeholder="Name" required />
+                                                <input type="text" name="name" placeholder="Name" />
                                                 </div>
                                                 <div className="form-group">
-                                                <input type="email" name="email" placeholder="Email" required />
+                                                <input type="email" name="email" placeholder="Email" />
                                                 </div>
                                                 <div className="form-group">
-                                                <input type="text" name="phone" placeholder="Phone" required />
+                                                <input type="text" name="phone" placeholder="Phone" />
                                                 </div>
                                                 <div className="form-group">
-                                                <input type="text" name="subject" placeholder="Subject" required />
+                                                <input type="text" name="subject" placeholder="Subject"/>
+                                                </div>
+                                                <div className="form-group">
+                                                <input type="file" name="cv" placeholder="Upload CV" required />
+                                                <p style={{color:"#6f42c1", fontSize:"12px"}}>Please upload CV here</p>
                                                 </div>
                                                 <div className="form-group">
                                                 <textarea name="message" placeholder="Message"></textarea>

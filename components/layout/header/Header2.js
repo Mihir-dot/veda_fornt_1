@@ -7,7 +7,32 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu, isSide
         <>
             {/* <header className="main-header header-style-two"> */}
             <header className={`main-header header-style-two ${scroll ? "fixed-header" : ""}`}>
-               
+            <div className="header-top">
+          <div className="auto-container">
+            <div className="top-inner">
+              <div className="top-left">
+                <ul className="info clearfix">
+                  {/* <li><i className="icon-1"></i>Mon-Fri 8:00 am-6:00 pm</li>
+                            <li><i className="icon-2"></i><Link href="tel:912136660027">+91-213-666-0027</Link></li>
+                            <li><i className="icon-3"></i><Link href="mailto:info@example.com">info@example.com</Link></li> */}
+                </ul>
+              </div>
+              <div className="top-right">
+                <div className="login">
+                  {" "}
+                  <li>
+                    <Link href="/contact">Contact Us</Link>
+                  </li>
+                </div>
+                <ul className="social-links clearfix">
+                  <li>
+                    <Link href="#">(02) 748 54433</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
                 <div className="header-lower">
                     <div className="auto-container">
                         <div className="outer-box">

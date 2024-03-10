@@ -13,11 +13,11 @@
 }
 
 .header-top .top-right .login a:hover{
-  color: #6f42c1;
+  color: #fff;
 }
 
 .header-top .social-links li a:hover{
-  color: #6f42c1;
+  color: #fff;
 }
 
 .main-menu .navigation > li.current > a,
@@ -503,7 +503,7 @@
 }
 
 .shop-block-one .inner-box .image-box .option-list li a:hover{
-	background: #6f42c1;
+	/* background: #6f42c1; */
 }
 
 .shop-block-one .inner-box .image-box .cart-btn button{

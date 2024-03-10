@@ -12,7 +12,7 @@ export default function About() {
                             <figure className="image image-2"><img src="assets/images/resource/about-2.jpg" alt="" /></figure>
                             <div className="video-inner">
                                 <div className="video-btn">
-                                    <VideoPopup />
+                                    {/* <VideoPopup /> */}
                                 </div>
                             </div>
                         </div>
@@ -26,9 +26,9 @@ export default function About() {
                             <h2>Dedicated And <br/>Professional Consulting Services</h2>
                             </div>
                             <div className="text mb_35">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing integer ultrices suspendisse varius etiam est. Est, felis, tempus nec vitae orci sodales Metus, velit nec at diam in sed. Massa dui ipsum ornare sagittis dolor sagittis amet odio est. Sit semper et velit fusce.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing integer ultrices suspendisse varius etiam est. Est, felis, tempus nec vitae orci sodales Metus, velit nec at diam in sed. Massa dui ipsum ornare sagittis dolor sagittis amet odio est. Sit semper et velit fusce.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing integer ultrices suspendisse varius etiam est. Est, felis, tempus nec vitae orci sodales Metus, velit nec at diam in sed. Massa dui ipsum ornare sagittis dolor sagittis amet odio est. Sit semper et velit fusce.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing integer ultrices suspendisse varius etiam est. Est, felis, tempus nec vitae orci sodales Metus, velit nec at diam in sed. Massa dui ipsum ornare sagittis dolor sagittis amet odio est. Sit semper et velit fusce.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing integer ultrices suspendisse varius etiam est. Est, felis, tempus nec vitae orci sodales Metus, velit nec at diam in sed. Massa dui ipsum ornare sagittis dolor sagittis amet odio est. Sit semper et velit fusce.</p>
                             </div>
-                            <div className="inner-box mb_35">
+                            {/* <div className="inner-box mb_35">
                             <div className="single-item">
                                 <div className="icon-box"><i className="icon-11"></i></div>
                                 <h3>Solution Focused</h3>
@@ -39,7 +39,7 @@ export default function About() {
                                 <h3>99.99% Success</h3>
                                 <p>Lorem ipsum dolor sit amet tempus consectetur adipiscing.</p>
                             </div>
-                            </div>
+                            </div> */}
                         </div>
                         </div>
                     </div>

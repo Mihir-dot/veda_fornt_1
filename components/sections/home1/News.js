@@ -57,7 +57,7 @@ const swiperOptions = {
 export default function News() {
     return (
         <>
-            <section className="news-section sec-pad">
+            <section className="news-section sec-pad" style={{marginTop:"-9%"}}>
                 <div className="auto-container">
                     <div className="sec-title centred mb_50">
                     <span className="sub-title">Our Article</span>

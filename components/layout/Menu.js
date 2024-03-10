@@ -30,7 +30,7 @@ export default function Menu() {
                 <li className="dropdown"><Link href="#">About Us</Link>
                 <ul>
                         <li><Link href="/about-us">What we do?</Link></li>
-                        <li><Link href="/shop">Our Vision, Pupose, and Values</Link></li>
+                        <li><Link href="/our-vision">Our Vision, Pupose, and Values</Link></li>
                     </ul>
                 </li>
                 <li className="dropdown"><Link href="#">I'm looking for</Link>
@@ -51,12 +51,12 @@ export default function Menu() {
                 </li>
                 <li className="dropdown"><Link href="#">Advocacy</Link>
                     <ul>
-                        <li><Link href="/shop">Podcast</Link></li>
-                        <li><Link href="/shop">Resources</Link></li>
+                        <li><Link href="/podcast">Podcast</Link></li>
+                        <li><Link href="/resources">Resources</Link></li>
                         <li><Link href="/product-details">VIDA CEO/Founder Blog</Link></li>
                     </ul>
                 </li>
-                <li><Link href="/contact">Contact</Link></li>
+                {/* <li><Link href="/contact">Contact</Link></li> */}
             </ul>
         </>
     )

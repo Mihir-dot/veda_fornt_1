@@ -31,6 +31,7 @@ export default function Home() {
     const fetchDataFromAPI = async () => {
       try {
         const data = await fetchServiceName();
+        console.log("data--------",data)
         setServices(data);
       } catch (error) {
         console.error("Error fetching services:", error);
@@ -81,12 +82,12 @@ export default function Home() {
               ></div>
               <div className="auto-container">
                 <div className="content-box">
-                  <h1>Waht we do</h1>
+                  <h1>What we do</h1>
                   <ul className="bread-crumb clearfix">
                     <li>
                       <Link href="/">Home</Link>
                     </li>
-                    <li>About Us</li>
+                    <li>What we do</li>
                   </ul>
                 </div>
               </div>
@@ -104,7 +105,9 @@ export default function Home() {
             </div>
            
             <div className="row clearfix">
-              <div className="col-lg-4 col-md-6 col-sm-12 service-block">
+            {
+              services.map((service,index)=>(
+                <div className="col-lg-4 col-md-6 col-sm-12 service-block">
                 <div
                   className="service-block-two wow fadeInUp animated"
                   data-wow-delay="00ms"
@@ -121,212 +124,27 @@ export default function Home() {
                         </div>
                         <h3>
                           <Link href="/strategy-planning">
-                            Strategy & Planning
+                            {service.sortName}
                           </Link>
                         </h3>
                         <p>
-                          Amet minim mollit no duis sit enim aliqua dolor do
-                          amet officia.
+                         {service.name}
                         </p>
                         <div className="btn-box">
-                          <Link
-                            href="/strategy-planning"
-                            className="theme-btn-one"
-                          >
+                        <li key={service._id} className="theme-btn-one">
+                            <a onClick={() => handleServiceClick(service._id)}>
                             Read More
-                          </Link>
+                            </a>
+                        </li>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6 col-sm-12 service-block">
-              <div
-                className="service-block-two wow fadeInUp animated"
-                data-wow-delay="00ms"
-                data-wow-duration="1500ms"
-              >
-                <div className="inner-box">
-                  <figure className="image-box">
-                    <img src="assets/images/service/service-1.jpg" alt="" />
-                  </figure>
-                  <div className="lower-content">
-                    <div className="inner">
-                      <div className="icon-box">
-                        <i className="icon-7"></i>
-                      </div>
-                      <h3>
-                        <Link href="/strategy-planning">
-                          Strategy & Planning
-                        </Link>
-                      </h3>
-                      <p>
-                        Amet minim mollit no duis sit enim aliqua dolor do
-                        amet officia.
-                      </p>
-                      <div className="btn-box">
-                        <Link
-                          href="/strategy-planning"
-                          className="theme-btn-one"
-                        >
-                          Read More
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6 col-sm-12 service-block">
-            <div
-              className="service-block-two wow fadeInUp animated"
-              data-wow-delay="00ms"
-              data-wow-duration="1500ms"
-            >
-              <div className="inner-box">
-                <figure className="image-box">
-                  <img src="assets/images/service/service-1.jpg" alt="" />
-                </figure>
-                <div className="lower-content">
-                  <div className="inner">
-                    <div className="icon-box">
-                      <i className="icon-7"></i>
-                    </div>
-                    <h3>
-                      <Link href="/strategy-planning">
-                        Strategy & Planning
-                      </Link>
-                    </h3>
-                    <p>
-                      Amet minim mollit no duis sit enim aliqua dolor do
-                      amet officia.
-                    </p>
-                    <div className="btn-box">
-                      <Link
-                        href="/strategy-planning"
-                        className="theme-btn-one"
-                      >
-                        Read More
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6 col-sm-12 service-block">
-          <div
-            className="service-block-two wow fadeInUp animated"
-            data-wow-delay="00ms"
-            data-wow-duration="1500ms"
-          >
-            <div className="inner-box">
-              <figure className="image-box">
-                <img src="assets/images/service/service-1.jpg" alt="" />
-              </figure>
-              <div className="lower-content">
-                <div className="inner">
-                  <div className="icon-box">
-                    <i className="icon-7"></i>
-                  </div>
-                  <h3>
-                    <Link href="/strategy-planning">
-                      Strategy & Planning
-                    </Link>
-                  </h3>
-                  <p>
-                    Amet minim mollit no duis sit enim aliqua dolor do
-                    amet officia.
-                  </p>
-                  <div className="btn-box">
-                    <Link
-                      href="/strategy-planning"
-                      className="theme-btn-one"
-                    >
-                      Read More
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6 col-sm-12 service-block">
-        <div
-          className="service-block-two wow fadeInUp animated"
-          data-wow-delay="00ms"
-          data-wow-duration="1500ms"
-        >
-          <div className="inner-box">
-            <figure className="image-box">
-              <img src="assets/images/service/service-1.jpg" alt="" />
-            </figure>
-            <div className="lower-content">
-              <div className="inner">
-                <div className="icon-box">
-                  <i className="icon-7"></i>
-                </div>
-                <h3>
-                  <Link href="/strategy-planning">
-                    Strategy & Planning
-                  </Link>
-                </h3>
-                <p>
-                  Amet minim mollit no duis sit enim aliqua dolor do
-                  amet officia.
-                </p>
-                <div className="btn-box">
-                  <Link
-                    href="/strategy-planning"
-                    className="theme-btn-one"
-                  >
-                    Read More
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="col-lg-4 col-md-6 col-sm-12 service-block">
-      <div
-        className="service-block-two wow fadeInUp animated"
-        data-wow-delay="00ms"
-        data-wow-duration="1500ms"
-      >
-        <div className="inner-box">
-          <figure className="image-box">
-            <img src="assets/images/service/service-1.jpg" alt="" />
-          </figure>
-          <div className="lower-content">
-            <div className="inner">
-              <div className="icon-box">
-                <i className="icon-7"></i>
-              </div>
-              <h3>
-                <Link href="/strategy-planning">
-                  Strategy & Planning
-                </Link>
-              </h3>
-              <p>
-                Amet minim mollit no duis sit enim aliqua dolor do
-                amet officia.
-              </p>
-              <div className="btn-box">
-                <Link
-                  href="/strategy-planning"
-                  className="theme-btn-one"
-                >
-                  Read More
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              ))
+            }
+              
             </div>
           </div>
         </section>

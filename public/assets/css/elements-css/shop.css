@@ -249,13 +249,13 @@
 	line-height: 44px;
 	font-size: 16px;
 	color: #222;
-	background: #fff;
+	/* background: #fff; */
 	text-align: center;
 	border-radius: 50%;
 }
 
 .shop-block-one .inner-box .image-box .option-list li a:hover{
-	color: #fff;
+	/* color: #fff; */
 }
 
 .shop-block-one .inner-box .image-box .cart-btn{

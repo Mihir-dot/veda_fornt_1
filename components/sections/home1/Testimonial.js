@@ -17,6 +17,10 @@ export default function Testimonial() {
                         <p>
                             Amet dui scelerisque vel habitant eget tincidunt facilisis
                             pretium. Porttitor mi nisi, non vitae tempus.
+                            Amet dui scelerisque vel habitant eget tincidunt facilisis
+                            pretium. Porttitor mi nisi, non vitae tempus.
+                            Amet dui scelerisque vel habitant eget tincidunt facilisis
+                            pretium. Porttitor mi nisi, non vitae tempus.
                         </p>
                         </div>
                     </div>
