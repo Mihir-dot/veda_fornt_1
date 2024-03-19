@@ -44,12 +44,12 @@ export default function Menu() {
                     ))}
                     </ul>
                 </li>
-                <li className="dropdown"><Link href="#">Work with us</Link>
+                <li className="dropdown"><Link href="/career">Work with us</Link>
                     <ul>
                         <li><Link href="/career">Current Vacancies</Link></li>
                     </ul>
                 </li>
-                <li className="dropdown"><Link href="#">Advocacy</Link>
+                <li className="dropdown"><Link href="/podcast">Advocacy</Link>
                     <ul>
                         <li><Link href="/podcast">Podcast</Link></li>
                         <li><Link href="/resources">Resources</Link></li>

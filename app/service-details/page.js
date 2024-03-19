@@ -5,6 +5,7 @@ import Link from "next/link";
 import axios from "axios";
 import { fetchServiceName } from "@/components/helper/serviceNameCommonAPI";
 import { API_ENDPOINTS, getAPIEndpoint, getImageSource } from "@/components/helper/apiPath";
+import Footer1 from "@/components/layout/footer/Footer1";
 
 export default function Home() {
   const [serviceDetails, setServiceDetails] = useState(null);
@@ -48,7 +49,7 @@ export default function Home() {
 
   return (
     <>
-      <Layout headerStyle={2} footerStyle={1}>
+      <Layout headerStyle={2}>
       {isLoading ? (
         <div className="loader-container">
         <div className="loader"></div>
@@ -169,6 +170,7 @@ export default function Home() {
       </div>
       </>
       )}
+      <Footer1/>
   </Layout>
     </>
   );

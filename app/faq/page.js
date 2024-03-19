@@ -4,6 +4,7 @@ import { API_ENDPOINTS, getAPIEndpoint } from "@/components/helper/apiPath";
 import Layout from "@/components/layout/Layout";
 import axios from "axios";
 import Link from 'next/link';
+import Footer1 from "@/components/layout/footer/Footer1";
 
 export default function Home() {
   const [isActive, setIsActive] = useState(0); // Initialize with index 0
@@ -30,7 +31,7 @@ export default function Home() {
   };
 
   return (
-    <Layout headerStyle={2} footerStyle={1}>
+    <Layout headerStyle={2}>
       <div>
       <section className="page-title centred">
       <div
@@ -149,6 +150,7 @@ export default function Home() {
           </div>
         </section>
       </div>
+      <Footer1/>
     </Layout>
   );
 }

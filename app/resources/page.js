@@ -1,5 +1,6 @@
 "use client"
 import Layout from "@/components/layout/Layout";
+import Footer1 from "@/components/layout/footer/Footer1";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 export default function Home() {
@@ -16,7 +17,7 @@ export default function Home() {
 
   return (
     <>
-      <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Resources">
+      <Layout headerStyle={2} breadcrumbTitle="Resources">
    {   /*  {isLoading ? (
           <div className="loader-container">
             <div className="loader"></div>
@@ -146,6 +147,7 @@ export default function Home() {
               </div>
             </section>
             {/* sidebar-page-container end */}
+            <Footer1/>
       </Layout>
     </>
   );

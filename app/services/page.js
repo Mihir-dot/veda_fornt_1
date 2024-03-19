@@ -11,6 +11,8 @@ import ModalVideo from "react-modal-video";
 import { API_ENDPOINTS, getAPIEndpoint, getImageSource } from "@/components/helper/apiPath";
 import { fetchServiceName } from "@/components/helper/serviceNameCommonAPI";
 import axios from "axios";
+import Footer1 from "@/components/layout/footer/Footer1";
+
 export default function Home() {
   const [isOpen, setOpen] = useState(false);
   const [isActive, setIsActive] = useState({
@@ -63,7 +65,7 @@ export default function Home() {
 
   return (
     <>
-      <Layout headerStyle={2} footerStyle={1}>
+      <Layout headerStyle={2}>
     
           <>
             <section className="page-title centred">
@@ -126,6 +128,7 @@ export default function Home() {
               </div>
             </section>
           </>
+          <Footer1/>
       </Layout>
     </>
   );

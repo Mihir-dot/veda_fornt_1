@@ -6,6 +6,7 @@ import {
   getImageSource,
 } from "@/components/helper/apiPath";
 import Layout from "@/components/layout/Layout";
+import Footer1 from "@/components/layout/footer/Footer1";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -56,7 +57,7 @@ export default function Home() {
 
   return (
     <>
-      <Layout headerStyle={2} footerStyle={1}>
+      <Layout headerStyle={2}>
         {/*    {isLoading ? (
           <div className="loader-container">
             <div className="loader"></div>
@@ -297,8 +298,10 @@ export default function Home() {
               </section>
               {/* Contact Form Section End */}
             </div>
+            <Footer1/>
           </>
         ))}
+       
       </Layout>
     </>
   );

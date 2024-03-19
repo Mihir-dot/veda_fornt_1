@@ -9,6 +9,7 @@ import {
   fetchAboutData,
   fetchServiceName,
 } from "@/components/helper/serviceNameCommonAPI";
+import Footer1 from "@/components/layout/footer/Footer1";
 
 export default function Home() {
   const [isOpen, setOpen] = useState(false);
@@ -54,7 +55,7 @@ export default function Home() {
 
   return (
     <>
-      <Layout headerStyle={2} footerStyle={1}>
+      <Layout headerStyle={2}>
         {/*  {isLoading ? (
           <div className="loader-container">
             <div className="loader"></div>
@@ -204,6 +205,7 @@ export default function Home() {
               videoId="vfhzo499OeA"
               onClose={() => setOpen(false)}
             />
+            <Footer1/>
           </>
         ))}
       </Layout>

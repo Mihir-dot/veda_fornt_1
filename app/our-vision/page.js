@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import { fetchAboutData } from "@/components/helper/serviceNameCommonAPI";
 import { getImageSource } from "@/components/helper/apiPath";
+import Footer1 from "@/components/layout/footer/Footer1";
 
 export default function Home() {
   const [about, setAbout] = useState([]);
@@ -32,7 +33,7 @@ export default function Home() {
   };
   return (
     <>
-      <Layout headerStyle={2} footerStyle={1}>
+      <Layout headerStyle={2}>
         {/*   {isLoading ? (
           <div className="loader-container">
             <div className="loader"></div>
@@ -165,6 +166,7 @@ export default function Home() {
                 </div>
               </div>
             </section>
+            <Footer1/>
           </>
         ))}
       </Layout>
