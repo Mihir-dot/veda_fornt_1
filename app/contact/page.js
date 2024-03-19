@@ -15,18 +15,18 @@ export default function Home() {
   const [socialMedia, setSocialMedia] = useState([]);
 
   useEffect(() => {
+    fetchAllContacts();
+    fetchAllSocialDetails();
+  }, []);
+  useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
-
+  
     // Clear the timeout if the component unmounts before the asynchronous operation completes
     return () => clearTimeout(timeoutId);
   }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
 
-  useEffect(() => {
-    fetchAllContacts();
-    fetchAllSocialDetails();
-  }, []);
 
   const fetchAllContacts = async () => {
     try {
@@ -204,12 +204,12 @@ export default function Home() {
                                   </Link>
                                 </li>
                                 <li>
-                                  <Link href={social.linkedin} style={{background:"#0072b1"}}>
+                                  <Link href={social.linkedin} style={{ background: "#0072b1" }}>
                                     <i className="fab fa-linkedin-in"></i>
                                   </Link>
                                 </li>
                                 <li>
-                                  <Link href={social.instagram} style={{background:"linear-gradient(115deg, rgb(249, 206, 52), rgb(238, 42, 123), rgb(98, 40, 215)) "}}>
+                                  <Link href={social.instagram} style={{ background: "linear-gradient(115deg, rgb(249, 206, 52), rgb(238, 42, 123), rgb(98, 40, 215)) " }}>
                                     <i className="fab fa-instagram"></i>
                                   </Link>
                                 </li>

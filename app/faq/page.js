@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { API_ENDPOINTS, getAPIEndpoint } from "@/components/helper/apiPath";
 import Layout from "@/components/layout/Layout";
 import axios from "axios";
+import Link from 'next/link';
 
 export default function Home() {
   const [isActive, setIsActive] = useState(0); // Initialize with index 0
@@ -42,6 +43,9 @@ export default function Home() {
           <div className="content-box">
               <h1>FAQs</h1>
               <ul className="bread-crumb clearfix">
+                  <li>
+                      <Link href="/">Home</Link>
+                  </li>
                   <li>FAQs</li>
               </ul>
           </div>
