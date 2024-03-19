@@ -15,7 +15,7 @@ export default function Footer1() {
                                 <div className="logo-widget footer-widget">
                                     <figure className="footer-logo">
                                     <Link href="#">
-                                        <img src="assets/images/Black-green.png" alt="" />
+                                        <img src="assets/images/footer-logo.png" alt="" />
                                     </Link>
                                     </figure>
                                     <div className="text">

@@ -27,13 +27,13 @@ export default function Menu() {
             <ul className="navigation clearfix">
                 <li className=""><Link href="/">Home</Link>
                 </li>
-                <li className="dropdown"><Link href="#">About Us</Link>
+                <li className="dropdown"><Link href="/our-vision">About Us</Link>
                 <ul>
                         <li><Link href="/about-us">What we do?</Link></li>
                         <li><Link href="/our-vision">Our Vision, Pupose, and Values</Link></li>
                     </ul>
                 </li>
-                <li className="dropdown"><Link href="#">I'm looking for</Link>
+                <li className="dropdown"><Link href="/services">I'm looking for</Link>
                     <ul>
                     {services.map((service) => (
                         <li key={service._id}>
@@ -53,7 +53,7 @@ export default function Menu() {
                     <ul>
                         <li><Link href="/podcast">Podcast</Link></li>
                         <li><Link href="/resources">Resources</Link></li>
-                        <li><Link href="/product-details">VIDA CEO/Founder Blog</Link></li>
+                        <li><Link href="/founder">VIDA CEO/Founder Blog</Link></li>
                     </ul>
                 </li>
                 {/* <li><Link href="/contact">Contact</Link></li> */}

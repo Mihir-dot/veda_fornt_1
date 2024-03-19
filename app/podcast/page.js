@@ -1,308 +1,96 @@
-
+"use client";
+import { API_ENDPOINTS, getAPIEndpoint, getImageSource } from "@/components/helper/apiPath";
 import Layout from "@/components/layout/Layout"
+import axios from "axios";
 import Link from "next/link"
+import { useEffect, useState } from "react";
 export default function Home() {
+    const [podcast, setPoscast] = useState([]);
+    console.log("podcast--------", podcast)
+
+    useEffect(() => {
+        const fetchDataFromAPI = async () => {
+            try {
+                const response = await axios.get(
+                    getAPIEndpoint(API_ENDPOINTS.GET_PODCAST_DATA)
+                );
+                console.log("response--------", response)
+                const podcastData = response.data;
+                setPoscast(podcastData);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchDataFromAPI();
+    }, []);
 
     return (
         <>
-            <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Podcast">
+            <Layout headerStyle={2} footerStyle={1}>
                 <div>
-
+                    <section className="page-title centred">
+                        <div
+                            className="bg-layer"
+                            style={{
+                                backgroundImage: `url(assets/images/shop/pb.jpg)`,
+                            }}
+                        ></div>
+                        <div className="auto-container">
+                            <div className="content-box">
+                                <h1>Podcast</h1>
+                                <ul className="bread-crumb clearfix">
+                                    <li>
+                                        <Link href="/">Home</Link>
+                                    </li>
+                                    <li>Podcast</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
                     <section className="shop-section p_relative">
                         <div className="auto-container">
                             <div className="row clearfix">
                                 <div className="col-lg-12 col-md-12 col-sm-12 content-side">
                                     <div className="our-shop centred">
                                         <div className="row clearfix">
-                                            <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-                                                <div className="shop-block-one">
-                                                    <div className="inner-box">
-                                                        <div className="image-box">
-                                                            <figure className="image">
-                                                                <img src="assets/images/shop/shop-1.png" alt="Wooden Tea Table" />
-                                                            </figure>
-                                                            <ul className="option-list clearfix">
-                                                                <li><Link href="/product-details"></Link></li>
-                                                                <li>
-                                                                    <Link
-                                                                        href="assets/images/shop/shop-1.png"
-                                                                        className="lightbox-image"
-                                                                        data-fancybox="gallery"
-                                                                    >
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                            <div className="cart-btn">
-                                                                <button type="/shopping-cart">Click here</button>
+                                            {podcast.map((podcast, index) => (
+                                                <>
+                                                    <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
+                                                        <div className="shop-block-one">
+                                                            <div className="inner-box">
+                                                                <div className="image-box">
+                                                                    <figure className="image">
+                                                                        <img src={getImageSource(podcast.pictureLocation)} alt="Wooden Tea Table" />
+                                                                    </figure>
+                                                                    <ul className="option-list clearfix">
+                                                                        <li><Link href={podcast.link}></Link></li>
+                                                                        <li>
+                                                                            <Link
+                                                                                href={getImageSource(podcast.pictureLocation)}
+                                                                                className="lightbox-image"
+                                                                                data-fancybox="gallery"
+                                                                            >
+                                                                            </Link>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div className="cart-btn">
+                                                                        <button style={{background:"#6f42c1"}}><Link href={podcast.link} target="_blank" style={{color:"#fff"}}>Click here</Link></button>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="lower-content">
+                                                                    <h4>
+                                                                        <Link href={podcast.link} target="_blank">{podcast.name}</Link>
+                                                                    </h4>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div className="lower-content">
-                                                            <h4>
-                                                                <Link href="/product-details">Wooden Tea Table</Link>
-                                                            </h4>
-                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-                                                <div className="shop-block-one">
-                                                    <div className="inner-box">
-                                                        <div className="image-box">
-                                                            <figure className="image">
-                                                                <img src="assets/images/shop/shop-2.png" alt="White Lamp Handcraft" />
-                                                            </figure>
-                                                            <ul className="option-list clearfix">
-                                                                <li><Link href="/product-details"><i className="icon-36"></i></Link></li>
-                                                                <li>
-                                                                    <Link
-                                                                        href="assets/images/shop/shop-2.png"
-                                                                        className="lightbox-image"
-                                                                        data-fancybox="gallery"
-                                                                    >
-                                                                        <i className="icon-37"></i>
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                            <div className="cart-btn">
-                                                                <button type="/shopping-cart">Click here</button>
-                                                            </div>
-                                                        </div>
-                                                        <div className="lower-content">
-                                                            <h4>
-                                                                <Link href="/product-details">White Lamp Handcraft</Link>
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-                                                <div className="shop-block-one">
-                                                    <div className="inner-box">
-                                                        <div className="image-box">
-                                                            <figure className="image">
-                                                                <img src="assets/images/shop/shop-3.png" alt="Armchair Black Leather" />
-                                                            </figure>
-                                                            <ul className="option-list clearfix">
-                                                                <li><Link href="/product-details"><i className="icon-36"></i></Link></li>
-                                                                <li>
-                                                                    <Link
-                                                                        href="assets/images/shop/shop-3.png"
-                                                                        className="lightbox-image"
-                                                                        data-fancybox="gallery"
-                                                                    >
-                                                                        <i className="icon-37"></i>
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                            <div className="cart-btn">
-                                                                <button type="/shopping-cart">Click here</button>
-                                                            </div>
-                                                        </div>
-                                                        <div className="lower-content">
-                                                            <h4>
-                                                                <Link href="/product-details">Armchair Black Leather</Link>
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-                                                <div className="shop-block-one">
-                                                    <div className="inner-box">
-                                                        <div className="image-box">
-                                                            <figure className="image">
-                                                                <img src="assets/images/shop/shop-4.png" alt="Nordic Kitchen Teapot" />
-                                                            </figure>
-                                                            <ul className="option-list clearfix">
-                                                                <li><Link href="/product-details"><i className="icon-36"></i></Link></li>
-                                                                <li>
-                                                                    <Link
-                                                                        href="assets/images/shop/shop-4.png"
-                                                                        className="lightbox-image"
-                                                                        data-fancybox="gallery"
-                                                                    >
-                                                                        <i className="icon-37"></i>
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                            <div className="cart-btn">
-                                                                <button type="/shopping-cart">Click here</button>
-                                                            </div>
-                                                        </div>
-                                                        <div className="lower-content">
-                                                            <h4>
-                                                                <Link href="/product-details">Nordic Kitchen Teapot</Link>
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-                                                <div className="shop-block-one">
-                                                    <div className="inner-box">
-                                                        <div className="image-box">
-                                                            <figure className="image">
-                                                                <img src="assets/images/shop/shop-5.png" alt="Globe Electric Tech Series" />
-                                                            </figure>
-                                                            <ul className="option-list clearfix">
-                                                                <li><Link href="/product-details"><i className="icon-36"></i></Link></li>
-                                                                <li>
-                                                                    <Link
-                                                                        href="assets/images/shop/shop-5.png"
-                                                                        className="lightbox-image"
-                                                                        data-fancybox="gallery"
-                                                                    >
-                                                                        <i className="icon-37"></i>
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                            <div className="cart-btn">
-                                                                <button type="/shopping-cart">Click here</button>
-                                                            </div>
-                                                        </div>
-                                                        <div className="lower-content">
-                                                            <h4>
-                                                                <Link href="/product-details">Globe Electric Tech Series</Link>
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-                                                <div className="shop-block-one">
-                                                    <div className="inner-box">
-                                                        <div className="image-box">
-                                                            <figure className="image">
-                                                                <img src="assets/images/shop/shop-6.png" alt="White Vase Handcraft" />
-                                                            </figure>
-                                                            <ul className="option-list clearfix">
-                                                                <li><Link href="/product-details"><i className="icon-36"></i></Link></li>
-                                                                <li>
-                                                                    <Link
-                                                                        href="assets/images/shop/shop-6.png"
-                                                                        className="lightbox-image"
-                                                                        data-fancybox="gallery"
-                                                                    >
-                                                                        <i className="icon-37"></i>
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                            <div className="cart-btn">
-                                                                <button type="/shopping-cart">Click here</button>
-                                                            </div>
-                                                        </div>
-                                                        <div className="lower-content">
-                                                            <h4>
-                                                                <Link href="/product-details">White Vase Handcraft</Link>
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-                                                <div className="shop-block-one">
-                                                    <div className="inner-box">
-                                                        <div className="image-box">
-                                                            <figure className="image">
-                                                                <img src="assets/images/shop/shop-7.png" alt="Wooden Chair Anthracite" />
-                                                            </figure>
-                                                            <ul className="option-list clearfix">
-                                                                <li><Link href="/product-details"><i className="icon-36"></i></Link></li>
-                                                                <li>
-                                                                    <Link
-                                                                        href="assets/images/shop/shop-7.png"
-                                                                        className="lightbox-image"
-                                                                        data-fancybox="gallery"
-                                                                    >
-                                                                        <i className="icon-37"></i>
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                            <div className="cart-btn">
-                                                                <button type="/shopping-cart">Click here</button>
-                                                            </div>
-                                                        </div>
-                                                        <div className="lower-content">
-                                                            <h4>
-                                                                <Link href="/product-details">Wooden Chair Anthracite</Link>
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-                                                <div className="shop-block-one">
-                                                    <div className="inner-box">
-                                                        <div className="image-box">
-                                                            <figure className="image">
-                                                                <img src="assets/images/shop/shop-8.png" alt="Stylish Showpiece" />
-                                                            </figure>
-                                                            <ul className="option-list clearfix">
-                                                                <li><Link href="/product-details"><i className="icon-36"></i></Link></li>
-                                                                <li>
-                                                                    <Link
-                                                                        href="assets/images/shop/shop-8.png"
-                                                                        className="lightbox-image"
-                                                                        data-fancybox="gallery"
-                                                                    >
-                                                                        <i className="icon-37"></i>
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                            <div className="cart-btn">
-                                                                <button type="/shopping-cart">Click here</button>
-                                                            </div>
-                                                        </div>
-                                                        <div className="lower-content">
-                                                            <h4>
-                                                                <Link href="/product-details">Stylish Showpiece</Link>
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-3 col-md-6 col-sm-12 shop-block">
-                                                <div className="shop-block-one">
-                                                    <div className="inner-box">
-                                                        <div className="image-box">
-                                                            <figure className="image">
-                                                                <img src="assets/images/shop/shop-9.png" alt="Treated Pine Wood Chair" />
-                                                            </figure>
-                                                            <ul className="option-list clearfix">
-                                                                <li><Link href="/product-details"><i className="icon-36"></i></Link></li>
-                                                                <li>
-                                                                    <Link
-                                                                        href="assets/images/shop/shop-9.png"
-                                                                        className="lightbox-image"
-                                                                        data-fancybox="gallery"
-                                                                    >
-                                                                        <i className="icon-37"></i>
-                                                                    </Link>
-                                                                </li>
-                                                            </ul>
-                                                            <div className="cart-btn">
-                                                                <button type="/shopping-cart">Click here</button>
-                                                            </div>
-                                                        </div>
-                                                        <div className="lower-content">
-                                                            <h4>
-                                                                <Link href="/product-details">Treated Pine Wood Chair</Link>
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            {/* Map the shop items here */}
+                                                </>
+                                            ))}
+
+
                                         </div>
-                                        {/* <div className="pagination-wrapper centred pt_20">
-                                            <ul className="pagination clearfix">
-                                                <li><Link href="/shop"><i className="icon-45"></i></Link></li>
-                                                <li><Link href="/shop" className="current">1</Link></li>
-                                                <li><Link href="/shop">2</Link></li>
-                                                <li><Link href="/shop"><i className="icon-44"></i></Link></li>
-                                            </ul>
-                                        </div> */}
                                     </div>
                                 </div>
                             </div>

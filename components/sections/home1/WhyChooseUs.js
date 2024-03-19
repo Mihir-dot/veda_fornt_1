@@ -13,7 +13,7 @@ export default function WhyChooseUs() {
                         <div className="content_block_two">
                         <div className="content-box p_relative">
                             <div className="sec-title light mb_45">
-                            <span className="sub-title">Why Choose BizTech</span>
+                            <span className="sub-title">Why Choose Vida</span>
                             <h2>Reason For Choosing Our Consultancy</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing integer ultrices suspendisse varius etiam est.</p>
                             </div>
@@ -40,7 +40,7 @@ export default function WhyChooseUs() {
                     </div>
                 </div>
                 <div className="outer-box">
-                    <h2>Looking for the Best Business <br />Consulting?</h2>
+                    <h2>Looking for the Best <br />Consulting?</h2>
                     <Link href="/contact" className="theme-btn-one">Let’s Contact</Link>
                 </div>
             </section>           

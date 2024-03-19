@@ -1,6 +1,8 @@
 
 .clients-section{
 	padding: 87px 0px;
+    margin-top: -5%;
+	background: #6f42c1;
 }
 
 .clients-section .inner-box{
@@ -8,6 +10,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	margin-top: 5%;
 }
 
 .clients-section .inner-box .clients-logo{
@@ -20,7 +23,7 @@
 	max-width: 100%;
 	width: auto;
 	margin: 0 auto;
-	opacity: 0.4;
+	/* opacity: 0.4; */
 	transition: all 500ms ease;
 }
 

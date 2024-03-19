@@ -3,6 +3,9 @@
 .news-section{
   position: relative;
 }
+.news-block{
+	margin-bottom: 20px;
+}
 
 .news-block-one .inner-box{
   position: relative;
@@ -70,10 +73,11 @@
 }
 
 .news-block-one .inner-box .lower-content{
-  position: relative;
-  display: block;
-  padding-top: 40px;
-  padding-bottom: 20px;
+    position: relative;
+    display: block;
+	padding-top: 20px;
+    padding-top: 40px;
+	padding-bottom: 5px;
 }
 
 .news-block-one .inner-box .lower-content h3{

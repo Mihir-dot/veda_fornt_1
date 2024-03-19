@@ -70,14 +70,14 @@ export default function MobileMenu({
                        isActive.key == 1 ? "dropdown current" : "dropdown"
                      }
                    >
-                     <Link href="/#">About Us</Link>
+                     <Link href="/our-vision">About Us</Link>
                      <ul
                        style={{
                          display: `${isActive.key == 1 ? "block" : "none"}`,
                        }}
                      >
                      <li><Link href="/about-us">What we do?</Link></li>
-                     <li><Link href="/shop">Our Vision, Pupose, and Values</Link></li>
+                     <li><Link href="/our-vision">Our Vision, Pupose, and Values</Link></li>
                        
                      </ul>
                      <div
@@ -94,7 +94,7 @@ export default function MobileMenu({
                     isActive.key == 2 ? "dropdown current" : "dropdown"
                   }
                 >
-                  <Link href="/#">I'm looking for</Link>
+                  <Link href="/services">I'm looking for</Link>
                   <ul
                     style={{
                       display: `${isActive.key == 2 ? "block" : "none"}`,
@@ -151,9 +151,9 @@ export default function MobileMenu({
                       display: `${isActive.key == 4 ? "block" : "none"}`,
                     }}
                   >
-                  <li><Link href="/shop">Podcast</Link></li>
-                  <li><Link href="/shop">Resources</Link></li>
-                  <li><Link href="/product-details">VIDA CEO/Founder Blog</Link></li>
+                  <li><Link href="/podcast">Podcast</Link></li>
+                  <li><Link href="/resources">Resources</Link></li>
+                  <li><Link href="/founder">VIDA CEO/Founder Blog</Link></li>
                   </ul>
                   <div
                   className={
