@@ -18,12 +18,12 @@ export default function Home() {
   return (
     <>
       <Layout headerStyle={2} footerStyle={1}>
-        {isLoading ? (
+   {  /*   {isLoading ? (
           <div className="loader-container">
             <div className="loader"></div>
           </div>
         ) : (
-          <>
+        <>*/}
             <div>
               <section
                 className="shop-details p_relative"
@@ -95,8 +95,6 @@ export default function Home() {
                 </div>
               </section>
             </div>
-          </>
-        )}
       </Layout>
     </>
   );

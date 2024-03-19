@@ -17,12 +17,12 @@ export default function Home() {
   return (
     <>
       <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Resources">
-        {isLoading ? (
+   {   /*  {isLoading ? (
           <div className="loader-container">
             <div className="loader"></div>
           </div>
         ) : (
-          <>
+        <>*/}
             {/* sidebar-page-container */}
             <section className="sidebar-page-container pt_150 pb_150">
               <div className="auto-container">
@@ -146,8 +146,6 @@ export default function Home() {
               </div>
             </section>
             {/* sidebar-page-container end */}
-          </>
-        )}
       </Layout>
     </>
   );
