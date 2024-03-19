@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { API_ENDPOINTS, getAPIEndpoint } from "@/components/helper/apiPath";
 import Layout from "@/components/layout/Layout";
 import axios from "axios";
+import Link from 'next/link';
 
 export default function Home() {
   const [isActive, setIsActive] = useState(0); // Initialize with index 0
