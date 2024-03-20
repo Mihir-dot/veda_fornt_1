@@ -21,7 +21,7 @@ export default function About() {
     return (
         <>
             <section className="about-section p_relative">
-                {home.map((home, index) => (
+               
                     <>
                         <div className="auto-container">
                             <div className="row clearfix">
@@ -54,7 +54,7 @@ export default function About() {
                             </div>
                         </div>
                     </>
-                ))}
+                
 
             </section>
         </>
