@@ -1,30 +1,65 @@
 "use client"
+import { API_ENDPOINTS, getAPIEndpoint, getImageSource } from "@/components/helper/apiPath";
 import Layout from "@/components/layout/Layout";
 import Footer1 from "@/components/layout/footer/Footer1";
+import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 export default function Home() {
+  const [resources, setResources] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+  // useEffect(() => {
+  //   const timeoutId = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 1000);
 
-    // Clear the timeout if the component unmounts before the asynchronous operation completes
-    return () => clearTimeout(timeoutId);
-  }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
+  //   // Clear the timeout if the component unmounts before the asynchronous operation completes
+  //   return () => clearTimeout(timeoutId);
+  // }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
+
+  useEffect(() => {
+    const fetchDataFromAPI = async () => {
+      try {
+        const response = await axios.get(
+          getAPIEndpoint(API_ENDPOINTS.GET_RESOURCES_DATA)
+        );
+        const resourcesData = response.data;
+        setResources(resourcesData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchDataFromAPI();
+  }, []);
 
   return (
     <>
-      <Layout headerStyle={2} breadcrumbTitle="Resources">
-   {   /*  {isLoading ? (
-          <div className="loader-container">
-            <div className="loader"></div>
-          </div>
-        ) : (
-        <>*/}
+      <Layout headerStyle={2}>
+        {resources.map((resources, index) => (
+          <>
+            <section className="page-title centred">
+              <div
+                className="bg-layer"
+                style={{
+                  backgroundImage: `url(${getImageSource(resources.pictureLocation)})`,
+                }}
+              ></div>
+              <div className="auto-container">
+                <div className="content-box">
+                  <h1>Resources</h1>
+                  <ul className="bread-crumb clearfix">
+                    <li>
+                      <Link href="/">Home</Link>
+                    </li>
+                    <li>Resources</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
             {/* sidebar-page-container */}
+
             <section className="sidebar-page-container pt_150 pb_150">
               <div className="auto-container">
                 <div className="row clearfix">
@@ -32,71 +67,20 @@ export default function Home() {
                     <div className="blog-details-content">
                       <div className="news-block-one">
                         <div className="inner-box">
-                          {/* <div className="image-box">
-                                                <figure className="image"><img src="assets/images/news/news-13.jpg" alt="" /></figure>
-                                                <h2>18<span>APRIL</span></h2>
-                                            </div> */}
                           <div
                             className="lower-content"
                             style={{ marginTop: "-10%" }}
                           >
-                            <h2>How to Manage Business’s Online Reputation</h2>
+                            <h2>{resources.titleOne}</h2>
                             <p>
-                              Imperdiet consectetur gravida vel rutrum tempus,
-                              mattis sit massa lacus morbi feugiat aliquam
-                              sagittis nunc neque sit nec lorem tincidunt arcu
-                              nunc accumsan risus felis in ornare Lorem ipsum
-                              dolor sit amet, consectetur adipiscing elit.
-                              cursus ornare non non massa elit rutrum. eros
-                              proin nibh neque interdum accumsan, neque vitae.
-                              Tortor etiam sed suspendisse faucibus ac volutpat
-                              mattis tortor nec. Orc velit posuere turpis amet.
-                              Lectus lacus lectus habitasse amet quam libero,
-                              lorem. Volutpat maecenas viverra consequat
-                              condimentum diam donec aliquet. Natoque quam vitae
-                              leo risus. Eget neque proin in dolor cursus
-                              bibendum urna dictum. Aliquam gravida et proin
-                              maecenas quis faucibus varius tristique.
+                              {resources.descriptionOne}
                             </p>
+                            <h2>{resources.titleTwo}</h2>
                             <p>
-                              Pulvinar dolor aliquet netus ultrices neque, mi
-                              non accumsan ullamcorper nunc scelerisque turpis
-                              facilisis pretium ut facilisis pharetra, ultrices.
-                              Duis imperdiet habitant arcu quis. Nunc euismod
-                              odio cursus in diam eget tincidunt mauris.
-                            </p>
-                            <h2>COVID-19 resources</h2>
-                            <p>
-                              Imperdiet consectetur gravida vel rutrum tempus,
-                              mattis sit massa lacus morbi feugiat aliquam
-                              sagittis nunc neque sit nec lorem tincidunt arcu
-                              nunc accumsan risus felis in ornare Lorem ipsum
-                              dolor sit amet, consectetur adipiscing elit.
-                              cursus ornare non non massa elit rutrum. eros
-                              proin nibh neque interdum accumsan, neque vitae.
-                              Tortor etiam sed suspendisse faucibus ac volutpat
-                              mattis tortor nec. Orc velit posuere turpis amet.
-                              Lectus lacus lectus habitasse amet quam libero,
-                              lorem. Volutpat maecenas viverra consequat
-                              condimentum diam donec aliquet. Natoque quam vitae
-                              leo risus. Eget neque proin in dolor cursus
-                              bibendum urna dictum. Aliquam gravida et proin
-                              maecenas quis faucibus varius tristique.
+                              {resources.descriptionTwo}
                             </p>
                           </div>
                         </div>
-                      </div>
-                      <div className="author-box">
-                        <figure className="author-thumb">
-                          <img src="assets/images/news/author-1.jpg" alt="" />
-                        </figure>
-                        <h3>Sandra Bullock</h3>
-                        <span className="designation">About Author</span>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit amet sit purus tempor dui pharetra consequat nibh
-                          elit urna interdum viera quam.
-                        </p>
                       </div>
                       <div className="comment-form-area">
                         <h3>Leave A Comments</h3>
@@ -147,7 +131,10 @@ export default function Home() {
               </div>
             </section>
             {/* sidebar-page-container end */}
-            <Footer1/>
+            <Footer1 />
+          </>
+        ))}
+
       </Layout>
     </>
   );

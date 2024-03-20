@@ -14,14 +14,14 @@ export default function Home() {
   const [podcast, setPoscast] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+  // useEffect(() => {
+  //   const timeoutId = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 1000);
 
-    // Clear the timeout if the component unmounts before the asynchronous operation completes
-    return () => clearTimeout(timeoutId);
-  }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
+  //   // Clear the timeout if the component unmounts before the asynchronous operation completes
+  //   return () => clearTimeout(timeoutId);
+  // }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {

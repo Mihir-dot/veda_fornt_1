@@ -1,30 +1,34 @@
 "use client";
+import { API_ENDPOINTS, getAPIEndpoint, getImageSource } from "@/components/helper/apiPath";
 import Layout from "@/components/layout/Layout";
 import Footer1 from "@/components/layout/footer/Footer1";
+import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import "swiper/css/thumbs";
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [founder, setFounder] = useState([]);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    const fetchDataFromAPI = async () => {
+      try {
+        const response = await axios.get(
+          getAPIEndpoint(API_ENDPOINTS.GET_FOUNDER_DATA)
+        );
+        const founderData = response.data;
+        setFounder(founderData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-    // Clear the timeout if the component unmounts before the asynchronous operation completes
-    return () => clearTimeout(timeoutId);
-  }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
-
+    fetchDataFromAPI();
+  }, []);
   return (
     <>
-      <Layout headerStyle={2} >
-   {  /*   {isLoading ? (
-          <div className="loader-container">
-            <div className="loader"></div>
-          </div>
-        ) : (
-        <>*/}
+      <Layout headerStyle={2}>
+        {founder.map((founder, index) => (
+          <>
             <div>
               <section
                 className="shop-details p_relative"
@@ -38,37 +42,30 @@ export default function Home() {
                     <div className="row align-items-center">
                       <div className="col-lg-6 col-md-12 col-sm-12 image-column">
                         <figure className="image-box mr_30">
-                          <img src="assets/images/team/team-9.jpg" alt="" />
+                          <img src={getImageSource(founder.pictureLocation)} alt="" />
                         </figure>
                       </div>
                       <div className="col-lg-6 col-md-12 col-sm-12 content-column">
                         <div className="content-box ml_30">
-                          <h2>Darlene Robertson</h2>
-                          <span className="designation">C.E.O</span>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Semper sagittis dolor aliquet quam feugiat
-                            nisi a ultrices feugiat. Viverra facilisi turpis
-                            eget tempor. Mattis risus amet euismod eleifend.
-                            Proin ut eget sagittis mi quis viverra.
+                          <h2>{founder.title}</h2>
+                          
+                          <p className="mt-4">
+                           {founder.description}
                           </p>
                           <ul className="info-list clearfix">
                             <li>
-                              <span>Expertise: </span>Strategy, Leadership
-                            </li>
-                            <li>
-                              <span>Experience: </span>20 Years
+                              <span>Expertise: </span>{founder.expertise}
                             </li>
                             <li>
                               <span>Email: </span>
                               <Link href="mailto:example@gmail.com">
-                                example@gmail.com
+                              {founder.email}
                               </Link>
                             </li>
                             <li>
                               <span>Phone: </span>
                               <Link href="tel:913336660021">
-                                (+91) 333 666 0021
+                               {founder.phone_no}
                               </Link>
                             </li>
                           </ul>
@@ -96,7 +93,9 @@ export default function Home() {
                 </div>
               </section>
             </div>
-            <Footer1/>
+            <Footer1 />
+          </>
+        ))}
       </Layout>
     </>
   );
