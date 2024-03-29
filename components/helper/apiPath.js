@@ -11,9 +11,10 @@ export const API_ENDPOINTS = {
   GET_ABOUT_DATA: "/get/allabout",
   GET_HOME_DATA: "/get/allDashboard",
   GET_FAQ_DATA: "/get/allFaq",
-  GET_PODCAST_DATA : "/get/allprodcast",
-  GET_RESOURCES_DATA : "/get/allresource",
-  GET_FOUNDER_DATA : "/get/allblog"
+  GET_PODCAST_DATA: "/get/allprodcast",
+  GET_RESOURCES_DATA: "/get/allresource",
+  GET_FOUNDER_DATA: "/get/allblog",
+  ADD_CONTACT: "/sendEmail"
 };
 
 export const getAPIEndpoint = (endpoint) => {

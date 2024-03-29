@@ -77,7 +77,7 @@ export default function Header1({
               </div>
               <ul className="menu-right-content">
                 <li className="btn-box">
-                  <Link href="/contact">Free Consulting</Link>
+                  <Link href="/feedBack">Free Consulting</Link>
                 </li>
               </ul>
             </div>
@@ -113,7 +113,7 @@ export default function Header1({
               </div>
               <ul className="menu-right-content">
                 <li className="btn-box">
-                  <Link href="/contact">Free Consulting</Link>
+                  <Link href="/feedBack">Free Consulting</Link>
                 </li>
               </ul>
             </div>

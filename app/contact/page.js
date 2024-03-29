@@ -10,6 +10,7 @@ import Footer1 from "@/components/layout/footer/Footer1";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [contactData, setContactData] = useState([]);
@@ -52,6 +53,32 @@ export default function Home() {
       console.error("Error fetching contacts:", error);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    const formData = {
+      name: event.target.username.value,
+      email: event.target.email.value,
+      phone: event.target.phone.value,
+      subject: event.target.subject.value,
+      message: event.target.message.value,
+    };
+    try {
+      // Make a POST request to the API endpoint with form data
+      const response = await axios.post(
+        getAPIEndpoint(API_ENDPOINTS.ADD_CONTACT),
+        formData
+      );
+      if (response.data) {
+        toast.success("Thank you, We will connect soon");
+      }
+      // Optionally, you can show a success message or redirect the user after successful submission
+    } catch (error) {
+      console.error("Error sending email:", error);
+      // Handle error, show an error message to the user, etc.
     }
   };
 
@@ -240,6 +267,7 @@ export default function Home() {
                           action="sendemail.php"
                           id="contact-form"
                           className="default-form"
+                          onSubmit={handleSubmit}
                         >
                           <div className="row clearfix">
                             <div className="col-lg-6 col-md-6 col-sm-12 form-group">
@@ -298,10 +326,9 @@ export default function Home() {
               </section>
               {/* Contact Form Section End */}
             </div>
-            <Footer1/>
+            <Footer1 />
           </>
         ))}
-       
       </Layout>
     </>
   );

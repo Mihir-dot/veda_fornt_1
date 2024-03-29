@@ -55,7 +55,7 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu, isSide
                             </div>
                             <ul className="menu-right-content">
                                 <li className="btn-box">
-                                    <Link href="/contact" className="theme-btn-one">Free Consulting</Link>
+                                    <Link href="/feedBack" className="theme-btn-one">Free Consulting</Link>
                                 </li>
                             </ul>
                         </div>
@@ -76,7 +76,7 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu, isSide
                             </div>
                             <ul className="menu-right-content">
                                 <li className="btn-box">
-                                    <Link href="/contact">Free Consulting</Link>
+                                    <Link href="/feedBack">Free Consulting</Link>
                                 </li>
                             </ul>
                         </div>
