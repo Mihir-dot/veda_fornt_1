@@ -14,7 +14,7 @@ export default function Footer1() {
                             <div className="col-lg-4 col-md-6 col-sm-12 footer-column">
                                 <div className="logo-widget footer-widget">
                                     <figure className="footer-logo">
-                                        <Link href="#">
+                                        <Link href="/">
                                             <img src="assets/images/footer-logo.png" alt="" />
                                         </Link>
                                     </figure>
@@ -52,17 +52,17 @@ export default function Footer1() {
                                     <div className="widget-content">
                                     <div className="row mt-5">
                                         <div className="col-2">
-                                            <Link href="#" style={{ display: 'inline-block', width: '40px', height: '40px', lineHeight: '40px', borderRadius: '50%', textAlign: 'center', color: '#000', backgroundColor: '#fff', border: '1px solid gray', transition: 'all 0.3s ease', margin: '0 auto' }}>
+                                            <Link href="https://www.facebook.com" aria-label="Read more about it" style={{ display: 'inline-block', width: '40px', height: '40px', lineHeight: '40px', borderRadius: '50%', textAlign: 'center', color: '#000', backgroundColor: '#fff', border: '1px solid gray', transition: 'all 0.3s ease', margin: '0 auto' }}>
                                                 <i className="fab fa-facebook-f"></i>
                                             </Link>
                                         </div>
                                         <div className="col-2 text-center">
-                                        <Link href="#" style={{ display: 'inline-block', width: '40px', height: '40px', lineHeight: '40px', borderRadius: '50%', textAlign: 'center', color: '#000', background: '#fff', border: '1px solid gray', transition: 'all 0.3s ease', margin: '0 auto' }}>
+                                        <Link href="https://twitter.com/"  aria-label="Read more about it" style={{ display: 'inline-block', width: '40px', height: '40px', lineHeight: '40px', borderRadius: '50%', textAlign: 'center', color: '#000', background: '#fff', border: '1px solid gray', transition: 'all 0.3s ease', margin: '0 auto' }}>
                                             <i className="fab fa-twitter"></i>
                                         </Link>
                                     </div>
                                         <div className="col-2 text-center">
-                                            <Link href="#" style={{ display: 'inline-block', width: '40px', height: '40px', lineHeight: '40px', borderRadius: '50%', textAlign: 'center', color: '#000', backgroundColor: '#fff', border: '1px solid gray', transition: 'all 0.3s ease', margin: '0 auto' }}>
+                                            <Link href="https://www.linkedin.com/"  aria-label="Read more about it" style={{ display: 'inline-block', width: '40px', height: '40px', lineHeight: '40px', borderRadius: '50%', textAlign: 'center', color: '#000', backgroundColor: '#fff', border: '1px solid gray', transition: 'all 0.3s ease', margin: '0 auto' }}>
                                                 <i className="fab fa-linkedin-in"></i>
                                             </Link>
                                         </div>
@@ -72,7 +72,7 @@ export default function Footer1() {
                                             </Link>
     </div>*/}
                                         <div className="col-2 text-center">
-                                            <Link href="#" style={{ display: 'inline-block', width: '40px', height: '40px', lineHeight: '40px', borderRadius: '50%', textAlign: 'center', color: '#000', background: '#fff', border: '1px solid gray', transition: 'all 0.3s ease', margin: '0 auto' }}>
+                                            <Link href="https://www.youtube.com/"  aria-label="Read more about it" style={{ display: 'inline-block', width: '40px', height: '40px', lineHeight: '40px', borderRadius: '50%', textAlign: 'center', color: '#000', background: '#fff', border: '1px solid gray', transition: 'all 0.3s ease', margin: '0 auto' }}>
                                                 <i className="fab fa-youtube"></i>
                                             </Link>
                                         </div>
