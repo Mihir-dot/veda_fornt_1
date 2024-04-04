@@ -1,16 +1,15 @@
 "use client";
 import {
   API_ENDPOINTS,
-  IMAGE_BASE_URL,
   getAPIEndpoint,
   getImageSource,
 } from "@/components/helper/apiPath";
+import { FIRST_MESSAGE, SECOND_MESSAGE, Toastify } from "@/components/helper/toastMessage";
 import Layout from "@/components/layout/Layout";
 import Footer1 from "@/components/layout/footer/Footer1";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [contactData, setContactData] = useState([]);
@@ -20,14 +19,6 @@ export default function Home() {
     fetchAllContacts();
     fetchAllSocialDetails();
   }, []);
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
-    // Clear the timeout if the component unmounts before the asynchronous operation completes
-    return () => clearTimeout(timeoutId);
-  }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
 
   const fetchAllContacts = async () => {
     try {
@@ -66,6 +57,7 @@ export default function Home() {
       subject: event.target.subject.value,
       message: event.target.message.value,
     };
+    setIsLoading(true)
     try {
       // Make a POST request to the API endpoint with form data
       const response = await axios.post(
@@ -73,12 +65,20 @@ export default function Home() {
         formData
       );
       if (response.data) {
-        toast.success("Thank you, We will connect soon");
+        Toastify({
+          message: {
+            firstLine: FIRST_MESSAGE,
+            secondLine: SECOND_MESSAGE,
+          },
+        });
+        event.target.reset();
       }
       // Optionally, you can show a success message or redirect the user after successful submission
     } catch (error) {
       console.error("Error sending email:", error);
       // Handle error, show an error message to the user, etc.
+    }finally{
+      setIsLoading(false)
     }
   };
 
@@ -302,7 +302,7 @@ export default function Home() {
                                 placeholder="Subject"
                               />
                             </div>
-                            <div className="col-lg-12 col-md-12 col-sm-12 form-group">
+                            <div className="col-lg-12 col-md-12 col-sm-12">
                               <textarea
                                 name="message"
                                 placeholder="Type message"
@@ -314,7 +314,22 @@ export default function Home() {
                                 type="submit"
                                 name="submit-form"
                               >
-                                Send Message
+                              {isLoading ? (
+                                <>
+                                  <div
+                                    className="spinner-border spinner-border-sm  text-light"
+                                    role="status"
+                                  >
+                                    <span className="visually-hidden">
+                                      Loading...
+                                    </span>
+                                  </div>
+                                  <span className="ms-2">Loading...</span>
+                                </>
+                              ) : (
+                                " Send Message"
+                              )}
+                               
                               </button>
                             </div>
                           </div>

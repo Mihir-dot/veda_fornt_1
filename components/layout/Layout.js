@@ -11,6 +11,8 @@ import Footer2 from './footer/Footer2'
 import Header1 from "./header/Header1"
 import Header2 from './header/Header2'
 import Header3 from "./header/Header123"
+import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer} from 'react-toastify'
 
 export default function Layout({ headerStyle, footerStyle, headTitle, breadcrumbTitle, children, wrapperCls }) {
     const [scroll, setScroll] = useState(0)
@@ -46,6 +48,7 @@ export default function Layout({ headerStyle, footerStyle, headTitle, breadcrumb
     return (
         <>
             <DataBg />
+            <ToastContainer />
             <div className={`page-wrapper ${wrapperCls ? wrapperCls : ""}`} id="#top">
                 {!headerStyle && <Header1 scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} handlePopup={handlePopup} isSidebar={isSidebar} handleSidebar={handleSidebar} />}
                 {headerStyle == 1 ? <Header1 scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} handlePopup={handlePopup} isSidebar={isSidebar} handleSidebar={handleSidebar} /> : null}

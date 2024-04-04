@@ -1,5 +1,6 @@
 "use client";
 import { API_ENDPOINTS, getAPIEndpoint } from "@/components/helper/apiPath";
+import { Toastify } from "@/components/helper/toastMessage";
 import Layout from "@/components/layout/Layout";
 import Footer1 from "@/components/layout/footer/Footer1";
 import axios from "axios";
@@ -7,15 +8,12 @@ import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-toastify";
 export default function Home() {
+  const [loading, setLoading] = useState(false);
+
   const [isActive, setIsActive] = useState({
     status: false,
     key: 1,
   });
-  const [isFileInputVisible, setIsFileInputVisible] = useState(false);
-
-  const handleApplyNowClick = () => {
-    setIsFileInputVisible(true);
-  };
 
   const handleToggle = (key) => {
     if (isActive.key === key) {
@@ -40,6 +38,7 @@ export default function Home() {
     formData.append("subject", event.target.subject?.value);
     formData.append("message", event.target.message?.value);
     formData.append("file", event.target.file?.files[0]); // Append the selected file
+    setLoading(true);
     try {
       // Make a POST request to the API endpoint with form data
       const response = await axios.post(
@@ -51,46 +50,59 @@ export default function Home() {
           },
         }
       );
-      toast.success("Application submitted! Reviewing your CV now. Expect to hear from us soon.");
+      if (response.data) {
+        Toastify({
+          message: {
+            firstLine: "Application submitted!",
+            secondLine: "We'll get back to you soon.",
+          },
+        });
+        event.target.reset();
+
+      }
+
       // Optionally, you can show a success message or redirect the user after successful submission
     } catch (error) {
       console.error("Error sending email:", error);
       // Handle error, show an error message to the user, etc.
+    } finally {
+      setLoading(false);
     }
   };
 
   const applySubmit = async () => {
-    // Create a new FormData object
     const formData = new FormData();
 
-    // Find the file input by its name attribute
     const fileInput = document.querySelector('input[name="file"]');
     console.log("fileInput:", fileInput);
 
-    // Check if a file is selected
     if (fileInput.files.length > 0) {
-      // Append the selected file to the FormData object
       formData.append("file", fileInput.files[0]);
-
+      setLoading(true);
       try {
-        // Make a POST request to the API endpoint with form data
         const response = await axios.post(
           getAPIEndpoint(API_ENDPOINTS.ADD_CONTACT),
           formData,
           {
             headers: {
-              "Content-Type": "multipart/form-data", // Ensure proper header for file upload
+              "Content-Type": "multipart/form-data",
             },
           }
         );
-        if (response) {
-
-          toast.success("Application submitted! Reviewing your CV now. Expect to hear from us soon.");
+        if (response.data) {
+          Toastify({
+            message: {
+              firstLine: "Application submitted!",
+              secondLine: "We'll get back to you soon.",
+            },
+          });
         }
         // Optionally, you can show a success message or redirect the user after successful submission
       } catch (error) {
         console.error("Error uploading file:", error);
         // Handle error, show an error message to the user, etc.
+      } finally {
+        setLoading(false);
       }
     } else {
       console.log("No file selected.");
@@ -174,7 +186,7 @@ export default function Home() {
                                 required
                                 style={{
                                   border: "1px solid #6f42c1",
-                                  borderRadius: '5px', // Adding border style
+                                  borderRadius: "5px", // Adding border style
                                   padding: "1px", // Adding padding for better appearance
                                 }}
                               />
@@ -183,12 +195,27 @@ export default function Home() {
                               </p>
                             </div>
                             <div
-                              className="btn-box theme-btn-one"
+                              className="form-group message-btn"
                               onClick={applySubmit}
                             >
-                              Apply Now
+                              <button type="submit" className="theme-btn-one">
+                                {loading ? (
+                                  <>
+                                    <div
+                                      className="spinner-border spinner-border-sm  text-light"
+                                      role="status"
+                                    >
+                                      <span className="visually-hidden">
+                                        Loading...
+                                      </span>
+                                    </div>
+                                    <span className="ms-2">Loading...</span>
+                                  </>
+                                ) : (
+                                  "Apply Now"
+                                )}
+                              </button>
                             </div>
-
                           </div>
                         </div>
                       </li>
@@ -243,7 +270,21 @@ export default function Home() {
                         </div>
                         <div className="form-group message-btn">
                           <button type="submit" className="theme-btn-one">
-                            Submit Now
+                            {loading ? (
+                              <>
+                                <div
+                                  className="spinner-border spinner-border-sm  text-light"
+                                  role="status"
+                                >
+                                  <span className="visually-hidden">
+                                    Loading...
+                                  </span>
+                                </div>
+                                <span className="ms-2">Loading...</span>
+                              </>
+                            ) : (
+                              "Submit Now"
+                            )}
                           </button>
                         </div>
                       </form>

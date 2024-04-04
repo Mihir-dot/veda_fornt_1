@@ -3254,4 +3254,34 @@ div#mCSB_1_container {
       transform: rotate(360deg);
     }
   }
+  a.social-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #000;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+}
+
+.social-icon:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.social-icon.linkedin {
+    background: #0072b1;
+}
+
+.social-icon.instagram {
+    background: linear-gradient(115deg, rgb(249, 206, 52), rgb(238, 42, 123), rgb(98, 40, 215));
+}
+
+.social-icon.youtube {
+    background: red;
+}
 }
