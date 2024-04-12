@@ -4,16 +4,30 @@ import {
   getAPIEndpoint,
   getImageSource,
 } from "@/components/helper/apiPath";
-import { FIRST_MESSAGE, SECOND_MESSAGE, Toastify } from "@/components/helper/toastMessage";
+import {
+  FIRST_MESSAGE,
+  SECOND_MESSAGE,
+  Toastify,
+} from "@/components/helper/toastMessage";
+import { validateContactForm } from "@/components/helper/validation";
 import Layout from "@/components/layout/Layout";
 import Footer1 from "@/components/layout/footer/Footer1";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [contactData, setContactData] = useState([]);
   const [socialMedia, setSocialMedia] = useState([]);
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+  const [validationErrors, setValidationErrors] = useState({});
 
   useEffect(() => {
     fetchAllContacts();
@@ -47,39 +61,68 @@ export default function Home() {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
 
-    const formData = {
-      name: event.target.username.value,
-      email: event.target.email.value,
-      phone: event.target.phone.value,
-      subject: event.target.subject.value,
-      message: event.target.message.value,
-    };
-    setIsLoading(true)
-    try {
-      // Make a POST request to the API endpoint with form data
-      const response = await axios.post(
-        getAPIEndpoint(API_ENDPOINTS.ADD_CONTACT),
-        formData
-      );
-      if (response.data) {
-        Toastify({
-          message: {
-            firstLine: FIRST_MESSAGE,
-            secondLine: SECOND_MESSAGE,
-          },
-        });
-        event.target.reset();
+    // Validate the current input field
+    const errors = validateContactForm({ ...formData, [name]: value });
+
+    // Update validation errors for the current input field
+    setValidationErrors({
+      ...validationErrors,
+      [name]: errors[name] || "", // Set the error message if there's an error, otherwise clear the message
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Validate the form
+    const errors = validateContactForm(formData);
+
+    if (Object.keys(errors).length > 0) {
+      // If there are validation errors, set them in state
+      setValidationErrors(errors);
+    } else {
+      try {
+        // Clear validation errors
+        setIsLoading(true);
+        setValidationErrors({});
+
+        const response = await axios.post(
+          getAPIEndpoint(API_ENDPOINTS.ADD_CONTACT),
+          formData
+        );
+        if (response.data) {
+          Toastify({
+            message: {
+              firstLine: FIRST_MESSAGE,
+              secondLine: SECOND_MESSAGE,
+            },
+          });
+          setFormData({
+            username: "",
+            email: "",
+            phone: "",
+            subject: "",
+            message: "",
+          });
+        }
+      } catch (error) {
+        console.error("Error sending email:", error);
+        // Handle error, show an error message to the user, etc.
+      } finally {
+        setIsLoading(false);
       }
-      // Optionally, you can show a success message or redirect the user after successful submission
-    } catch (error) {
-      console.error("Error sending email:", error);
-      // Handle error, show an error message to the user, etc.
-    }finally{
-      setIsLoading(false)
     }
+  };
+
+  const handleLocationClick = (location) => {
+    window.open(`https://www.google.com/maps/place/${location}`, "_blank");
   };
 
   return (
@@ -133,6 +176,8 @@ export default function Home() {
                         className="feature-block-three wow fadeInUp animated"
                         data-wow-delay="00ms"
                         data-wow-duration="1500ms"
+                        onClick={() => handleLocationClick(contact.location)}
+                        style={{ cursor: "pointer" }}
                       >
                         <div className="inner-box">
                           <div
@@ -275,38 +320,90 @@ export default function Home() {
                                 type="text"
                                 name="username"
                                 placeholder="Your Name"
-                                required
+                                value={formData.username}
+                                onChange={handleChange}
+                                autoComplete="off"
                               />
+                              {validationErrors.username && (
+                                <span
+                                  className="text-danger"
+                                  style={{ fontSize: "15px" }}
+                                >
+                                  {validationErrors.username}
+                                </span>
+                              )}
                             </div>
+
                             <div className="col-lg-6 col-md-6 col-sm-12 form-group">
                               <input
                                 type="email"
                                 name="email"
                                 placeholder="Your email"
-                                required
+                                value={formData.email}
+                                onChange={handleChange}
+                                autoComplete="off"
                               />
+                              {validationErrors.email && (
+                                <span
+                                  className="text-danger"
+                                  style={{ fontSize: "15px" }}
+                                >
+                                  {validationErrors.email}
+                                </span>
+                              )}
                             </div>
                             <div className="col-lg-6 col-md-6 col-sm-12 form-group">
                               <input
                                 type="text"
                                 name="phone"
-                                required
                                 placeholder="Phone"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                autoComplete="off"
                               />
+                              {validationErrors.phone && (
+                                <span
+                                  className="text-danger"
+                                  style={{ fontSize: "15px" }}
+                                >
+                                  {validationErrors.phone}
+                                </span>
+                              )}
                             </div>
                             <div className="col-lg-6 col-md-6 col-sm-12 form-group">
                               <input
                                 type="text"
                                 name="subject"
-                                required
                                 placeholder="Subject"
+                                value={formData.subject}
+                                onChange={handleChange}
+                                autoComplete="off"
                               />
+                              {validationErrors.subject && (
+                                <span
+                                  className="text-danger"
+                                  style={{ fontSize: "15px" }}
+                                >
+                                  {validationErrors.subject}
+                                </span>
+                              )}
                             </div>
                             <div className="col-lg-12 col-md-12 col-sm-12">
                               <textarea
                                 name="message"
                                 placeholder="Type message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                autoComplete="off"
                               ></textarea>
+                              {validationErrors.message && (
+                                <span
+                                  className="text-danger"
+                                  style={{ fontSize: "15px" }}
+                                >
+                                  {validationErrors.message}
+                                </span>
+                              )}
                             </div>
                             <div className="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
                               <button
@@ -314,22 +411,21 @@ export default function Home() {
                                 type="submit"
                                 name="submit-form"
                               >
-                              {isLoading ? (
-                                <>
-                                  <div
-                                    className="spinner-border spinner-border-sm  text-light"
-                                    role="status"
-                                  >
-                                    <span className="visually-hidden">
-                                      Loading...
-                                    </span>
-                                  </div>
-                                  <span className="ms-2">Loading...</span>
-                                </>
-                              ) : (
-                                " Send Message"
-                              )}
-                               
+                                {isLoading ? (
+                                  <>
+                                    <div
+                                      className="spinner-border spinner-border-sm  text-light"
+                                      role="status"
+                                    >
+                                      <span className="visually-hidden">
+                                        Loading...
+                                      </span>
+                                    </div>
+                                    <span className="ms-2">Loading...</span>
+                                  </>
+                                ) : (
+                                  " Send Message"
+                                )}
                               </button>
                             </div>
                           </div>

@@ -15,9 +15,16 @@ import {
   SECOND_MESSAGE,
   Toastify,
 } from "@/components/helper/toastMessage";
+import { validateCommentForm } from "@/components/helper/validation";
 export default function Home() {
   const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [validationErrors, setValidationErrors] = useState({});
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
@@ -35,38 +42,60 @@ export default function Home() {
     fetchDataFromAPI();
   }, []);
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    // Validate the current input field
+    const errors = validateCommentForm({ ...formData, [name]: value });
+
+    // Update validation errors for the current input field
+    setValidationErrors({
+      ...validationErrors,
+      [name]: errors[name] || "", // Set the error message if there's an error, otherwise clear the message
+    });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
-    const formData = {
-      name: event.target.name?.value,
-      email: event.target.email?.value,
-      message: event.target.message?.value,
-    };
-    setLoading(true);
-    try {
-      // Make a POST request to the API endpoint with form data
-      const response = await axios.post(
-        getAPIEndpoint(API_ENDPOINTS.ADD_CONTACT),
-        formData
-      );
-      if (response.data) {
-        Toastify({
-          message: {
-            firstLine: FIRST_MESSAGE,
-            secondLine: SECOND_MESSAGE,
-          },
-        });
-        event.target.reset();
-        // Swal.fire({
-        //   icon: 'success',
-        //   html: '<div style="text-align: center; font-family:Calibri; font-size: 20px"><strong>Thank you for reaching out to us!</strong><br/>We\'ll get back to you soon</div>',
-        // });
+    const errors = validateCommentForm(formData);
+    if (Object.keys(errors).length > 0) {
+      // If there are validation errors, set them in state
+      setValidationErrors(errors);
+    } else {
+      setLoading(true);
+      try {
+        // Make a POST request to the API endpoint with form data
+        const response = await axios.post(
+          getAPIEndpoint(API_ENDPOINTS.ADD_CONTACT),
+          formData
+        );
+        if (response.data) {
+          Toastify({
+            message: {
+              firstLine: FIRST_MESSAGE,
+              secondLine: SECOND_MESSAGE,
+            },
+          });
+          setFormData({
+            name: "",
+            email: "",
+            message: "",
+          });
+          // Swal.fire({
+          //   icon: 'success',
+          //   html: '<div style="text-align: center; font-family:Calibri; font-size: 20px"><strong>Thank you for reaching out to us!</strong><br/>We\'ll get back to you soon</div>',
+          // });
+        }
+      } catch (error) {
+        console.error("Error sending email:", error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error("Error sending email:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -131,20 +160,53 @@ export default function Home() {
                                   type="text"
                                   name="name"
                                   placeholder="Your Name"
+                                  value={formData.name}
+                                  onChange={handleChange}
+                                  autoComplete="off"
                                 />
+                                {validationErrors.name && (
+                                  <span
+                                    className="text-danger"
+                                    style={{ fontSize: "15px" }}
+                                  >
+                                    {validationErrors.name}
+                                  </span>
+                                )}
                               </div>
                               <div className="col-lg-6 col-md-6 col-sm-12 form-group">
                                 <input
                                   type="email"
                                   name="email"
                                   placeholder="Your email"
+                                  value={formData.email}
+                                  onChange={handleChange}
+                                  autoComplete="off"
                                 />
+                                {validationErrors.email && (
+                                  <span
+                                    className="text-danger"
+                                    style={{ fontSize: "15px" }}
+                                  >
+                                    {validationErrors.email}
+                                  </span>
+                                )}
                               </div>
                               <div className="col-lg-12 col-md-12 col-sm-12 form-group">
                                 <textarea
                                   name="message"
                                   placeholder="Type message"
+                                  value={formData.message}
+                                  onChange={handleChange}
+                                  autoComplete="off"
                                 ></textarea>
+                                {validationErrors.message && (
+                                  <span
+                                    className="text-danger"
+                                    style={{ fontSize: "15px" }}
+                                  >
+                                    {validationErrors.message}
+                                  </span>
+                                )}
                               </div>
                               <div className="col-lg-12 col-md-12 col-sm-12 form-group">
                                 <div className="message-btn">

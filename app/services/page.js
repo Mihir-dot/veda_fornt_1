@@ -1,24 +1,13 @@
 "use client";
-import VideoPopup from "@/components/elements/VideoPopup";
-import CounterUp from "@/components/elements/CounterUp";
 import Layout from "@/components/layout/Layout";
-import TestimonialSlider0 from "@/components/slider/TestimonialSlider0";
-import AwardSlider1 from "@/components/slider/AwardSlider1";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ReactCurvedText from "react-curved-text";
-import ModalVideo from "react-modal-video";
 import { API_ENDPOINTS, getAPIEndpoint, getImageSource } from "@/components/helper/apiPath";
 import { fetchServiceName } from "@/components/helper/serviceNameCommonAPI";
 import axios from "axios";
 import Footer1 from "@/components/layout/footer/Footer1";
 
 export default function Home() {
-  const [isOpen, setOpen] = useState(false);
-  const [isActive, setIsActive] = useState({
-    status: false,
-    key: 1,
-  });
   const [serviceDetails, setServiceDetails] = useState(null);
   const [services, setServices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

@@ -10,39 +10,69 @@ import Layout from "@/components/layout/Layout";
 import Footer1 from "@/components/layout/footer/Footer1";
 import axios from "axios";
 import Link from "next/link";
+import { validateFeedbackForm } from "@/components/helper/validation";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+  const [validationErrors, setValidationErrors] = useState({});
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    // Validate the current input field
+    const errors = validateFeedbackForm({ ...formData, [name]: value });
+
+    // Update validation errors for the current input field
+    setValidationErrors({
+      ...validationErrors,
+      [name]: errors[name] || "", // Set the error message if there's an error, otherwise clear the message
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
-    const formData = {
-      name: event.target.username.value,
-      email: event.target.email.value,
-      phone: event.target.phone.value,
-    };
-    setLoading(true);
-    try {
-      // Make a POST request to the API endpoint with form data
-      const response = await axios.post(
-        getAPIEndpoint(API_ENDPOINTS.ADD_CONTACT),
-        formData
-      );
-      if (response.data) {
-        Toastify({
-          message: {
-            firstLine: FIRST_MESSAGE,
-            secondLine: SECOND_MESSAGE,
-          },
-        });
+    const errors = validateFeedbackForm(formData);
+    if (Object.keys(errors).length > 0) {
+      // If there are validation errors, set them in state
+      setValidationErrors(errors);
+    } else {
+      setLoading(true);
+      try {
+        // Make a POST request to the API endpoint with form data
+        const response = await axios.post(
+          getAPIEndpoint(API_ENDPOINTS.ADD_CONTACT),
+          formData
+        );
+        if (response.data) {
+          Toastify({
+            message: {
+              firstLine: FIRST_MESSAGE,
+              secondLine: SECOND_MESSAGE,
+            },
+          });
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+          });
+        }
+        // Optionally, you can show a success message or redirect the user after successful submission
+      } catch (error) {
+        console.error("Error sending email:", error);
+        // Handle error, show an error message to the user, etc.
+      } finally {
+        setLoading(false);
       }
-      // Optionally, you can show a success message or redirect the user after successful submission
-    } catch (error) {
-      console.error("Error sending email:", error);
-      // Handle error, show an error message to the user, etc.
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -59,12 +89,12 @@ export default function Home() {
             ></div>
             <div className="auto-container">
               <div className="content-box">
-                <h1>Free Consulting</h1>
+                <h1>Feedback</h1>
                 <ul className="bread-crumb clearfix">
                   <li>
                     <Link href="/">Home</Link>
                   </li>
-                  <li>Free Consulting</li>
+                  <li>Feedback</li>
                 </ul>
               </div>
             </div>
@@ -104,26 +134,56 @@ export default function Home() {
                           <div className="col-lg-8 col-md-8 col-sm-8 form-group">
                             <input
                               type="text"
-                              name="username"
+                              name="name"
                               placeholder="Your Name"
-                              required
+                              value={formData.name}
+                              onChange={handleChange}
+                              autoComplete="off"
                             />
+                            {validationErrors.name && (
+                              <span
+                                className="text-danger"
+                                style={{ fontSize: "15px" }}
+                              >
+                                {validationErrors.name}
+                              </span>
+                            )}
                           </div>
                           <div className="col-lg-8 col-md-8 col-sm-8 form-group">
                             <input
                               type="text"
                               name="phone"
                               placeholder="Your Phone Number"
-                              required
+                              value={formData.phone}
+                              onChange={handleChange}
+                              autoComplete="off"
                             />
+                            {validationErrors.phone && (
+                              <span
+                                className="text-danger"
+                                style={{ fontSize: "15px" }}
+                              >
+                                {validationErrors.phone}
+                              </span>
+                            )}
                           </div>
                           <div className="col-lg-8 col-md-8 col-sm-8 form-group">
                             <input
                               type="email"
                               name="email"
                               placeholder="Your email"
-                              required
+                              value={formData.email}
+                              onChange={handleChange}
+                              autoComplete="off"
                             />
+                            {validationErrors.email && (
+                              <span
+                                className="text-danger"
+                                style={{ fontSize: "15px" }}
+                              >
+                                {validationErrors.email}
+                              </span>
+                            )}<br/>
                             <span>
                               To receive correspondence regarding this feedback
                               please provide an email address.
@@ -155,22 +215,21 @@ export default function Home() {
                               type="submit"
                               name="submit-form"
                             >
-                            {loading ? (
-                              <>
-                                <div
-                                  className="spinner-border spinner-border-sm  text-light"
-                                  role="status"
-                                >
-                                  <span className="visually-hidden">
-                                    Loading...
-                                  </span>
-                                </div>
-                                <span className="ms-2">Loading...</span>
-                              </>
-                            ) : (
-                              "Send Feedback"
-                            )}
-                              
+                              {loading ? (
+                                <>
+                                  <div
+                                    className="spinner-border spinner-border-sm  text-light"
+                                    role="status"
+                                  >
+                                    <span className="visually-hidden">
+                                      Loading...
+                                    </span>
+                                  </div>
+                                  <span className="ms-2">Loading...</span>
+                                </>
+                              ) : (
+                                "Send Feedback"
+                              )}
                             </button>
                           </div>
                         </div>

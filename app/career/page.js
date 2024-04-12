@@ -9,6 +9,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 export default function Home() {
   const [loading, setLoading] = useState(false);
+  const [fileError, setFileError] = useState("");
 
   const [isActive, setIsActive] = useState({
     status: false,
@@ -27,8 +28,45 @@ export default function Home() {
       });
     }
   };
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (!file) {
+      setFileError("Please upload a file.");
+      return; // Exit early if no file is selected
+    }
+  
+    const allowedExtensions = ["pdf", "doc", "docx"]; // Allowed file extensions
+    const fileExtension = file.name.split(".").pop().toLowerCase();
+  
+    if (!allowedExtensions.includes(fileExtension)) {
+      setFileError("Please upload a PDF or DOC file.");
+    } else {
+      setFileError("");
+    }
+  };
+  
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
+
+    
+  const fileInput = event.target.file;
+  if (!fileInput.files[0]) {
+    setFileError("Please upload a file.");
+    return; // Exit early if file is not selected
+  }
+
+  // Clear any previous file error if a file is selected
+  setFileError("");
+
+  const selectedFile = fileInput.files[0];
+  const allowedExtensions = ["pdf", "doc", "docx"]; // Allowed file extensions
+
+  const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
+  if (!allowedExtensions.includes(fileExtension)) {
+    setFileError("Please upload a PDF or DOC file only.");
+    return; // Exit early if file extension is not allowed
+  }
+
 
     // Create a new FormData object
     const formData = new FormData();
@@ -252,16 +290,21 @@ export default function Home() {
                           />
                         </div>
                         <div className="form-group">
-                          <input
-                            type="file"
-                            name="file"
-                            placeholder="Upload CV"
-                            required
-                          />
+                        <input
+                          type="file"
+                          name="file"
+                          placeholder="Upload CV"
+                          onChange={handleFileChange}
+                        />
+                        {fileError && (
+                          <span style={{ color: "red", fontSize: "12px" }}>{fileError}</span>
+                        )}
+                        {!fileError && (
                           <p style={{ color: "#6f42c1", fontSize: "12px" }}>
                             Please upload CV here
                           </p>
-                        </div>
+                        )}
+                      </div>
                         <div className="form-group">
                           <textarea
                             name="message"
